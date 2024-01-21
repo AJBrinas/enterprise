@@ -22,7 +22,7 @@ temp = Jinja2Templates(directory="app/templates")
 #     return user
 
 
-@router.get("/", response_model=user_schema.UserResponse)
+@router.get("/")
 def root(request: Request, db: db_dependency):
     user = db.query(cbhi.Health_Information).all()
 
@@ -62,8 +62,8 @@ def edit(request: Request,  user_id: int,
                                   "user": user})
 
 
-@router.get('/health-list')
-def get_list(db: db_dependency):
+# @router.get('/health-list')
+# def get_list(db: db_dependency):
 
-    health = db.query().all()
-    return health
+#     health = db.query().all()
+#     return health
