@@ -18,5 +18,10 @@ def root(Request: Request):
                                  )
 
 
+@app.get("/s")
+def here(Request: Request):
+    return {"msg": "hello"}
+
+
 app.include_router(health_information.router)
 app.include_router(disaster_plan.router)
