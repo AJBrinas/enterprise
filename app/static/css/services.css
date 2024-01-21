@@ -1,0 +1,46 @@
+.container{
+  margin-top: 3%;
+}
+  /*grid*/
+  .icon {
+    font-size: 100px; /* Adjust the size as needed */
+    color: #10364f; 
+  }
+  
+  /* Define the button styles */
+  
+  .hover-button {
+    min-width: 350px; /* Set a minimum width */
+    min-height: 200px; /* Set a minimum height */
+    padding: 30px 45px;
+    font-size: 18px;
+    background-color: #ffffff;
+    color: #ffffff;
+    
+    border: 1px solid; /* Set your border properties */
+    border-color: gray;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: flex; /* Center content horizontally and vertically */
+    flex-direction: column; /* Align content in a column layout */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+  }
+  
+  
+  
+  /* Define the hover effect */
+  .hover-button:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow on hover */
+  
+  transform: scale(1.03); /* Zoom in by 10% on hover */
+  }
+  .custom-h4 {
+    color: #10364f;
+}
+.title{
+  font-family: 'Times New Roman', Times, serif;
+}
+

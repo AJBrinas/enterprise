@@ -1,0 +1,41 @@
+
+  li a span {
+  font-size: medium;
+  }
+  .asterisk span{
+    color: red;
+  }
+  .button-container {
+    display: flex; /* Enable flexbox layout */
+    align-items: center; /* Align items vertically in the center */
+    margin-left: 90%;
+}
+
+.save-button {
+    width: 10px;
+    margin-left: 10px; /* Add some space between the link and the button */
+}
+
+.square{
+  margin-top: -2%;
+}
+/* dropdown with another fields */
+/* #additionalFieldsEmployed {
+  margin-top: 20px; /* Adjust the margin-top as needed 
+  
+}
+#additionalFieldsStudent{
+  margin-left: 50%;
+}
+
+#elementaryFields{
+  margin-left: 50%;
+}
+#highSchoolFields{
+  margin-left: 50%;
+}
+#seniorHighSchoolFields{
+  margin-left: 50%;
+}
+#indigenousYes{
+} */

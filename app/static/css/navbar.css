@@ -1,0 +1,60 @@
+
+
+.logo {
+  display: flex;
+  padding: 10px; /* Adjust the padding as needed */
+  /* Set your desired background color */
+  margin-top: -10px;
+  padding-bottom: 40px;
+  margin-left: 5%;
+}
+.logo img {
+  width: 160px; /* Set your desired width for the logo */
+  height: auto; /* Maintain the aspect ratio */
+  
+}
+
+/* Style for the main navigation items */
+.nav-item {
+    margin-right: 5px; /* Adjust the right margin as needed */
+}
+
+/* Style for the main navigation links */
+.nav-link {
+    display: flex;
+    align-items: center;
+}
+
+/* Style for the icons */
+.nav-link i {
+    margin-right: 5px; /* Adjust the right margin for icons as needed */
+}
+
+/* Style for the submenu items */
+.menu-dropdown .nav-item {
+    margin-left: 15px; /* Adjust the left margin for submenu items as needed */
+}
+
+/* Style for the submenu links */
+.menu-dropdown .nav-link {
+    padding-left: 15px; /* Adjust the left padding for submenu links as needed */
+}
+
+/* Style for the submenu icons */
+.menu-dropdown .nav-link i {
+    margin-right: 8px; /* Adjust the right margin for submenu icons as needed */
+}
+
+.navbar-nav .nav-link {
+  color: black !important; /* Use !important to force the color change */
+}
+.navbar-nav .nav-link:hover {
+  color: blue !important; /* Set the hover color to blue */
+}
+/*the topnavbar*/
+.navbar-nav {
+  display: flex; /* Use flexbox to align items horizontally */
+  justify-content: flex-start; /* Align items to the left */
+  margin-left: 50%;
+  margin-top: -6.5%;
+}

@@ -1,0 +1,21 @@
+/* CSS for the slideshow container */
+.slideshow-container {
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+}
+
+/* CSS for the slideshow images */
+.slide {
+    width: 100%; /* Adjust the width as needed */
+    height: 500px; /* Maintain aspect ratio */
+    margin-bottom: 2%;
+    margin-top: -3%;
+}
+/* CSS for centering h1 */
+h2 {
+    text-align: center; /* Center the text horizontally */
+    top: 50%; /* Center the text vertically */
+    left: 50%; /* Center the text horizontally */
+    font:bold;
+}

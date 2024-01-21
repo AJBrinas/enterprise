@@ -1,0 +1,12 @@
+.asterisk span{
+    color: red;
+}
+label{
+    margin-left: 1%;
+}
+.save-button{
+    margin-bottom: 2%;
+}
+.cancel-button{
+    margin-top: -2%;
+}
