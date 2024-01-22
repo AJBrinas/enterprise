@@ -35,13 +35,14 @@ class Vaccination(Base):
                         server_default=(text('now()')))
 
 
-class Medical(Base):
-    __tablename__ = "medical_history"
+# class Medical(Base):
+#     __tablename__ = "medical_history"
 
-    id = Column(Integer, primary_key=True)
-    health_id = Column(Integer, ForeignKey("c_health_information.id",
-                                           ondelete="CASCADE"),
-                       nullable=True)
-    created_at = Column(TIMESTAMP(timezone=True),
-                        nullable=False,
-                        server_default=(text('now()')))
+#     id = Column(Integer, primary_key=True)
+#     health_id = Column(Integer, ForeignKey("c_health_information.id",
+#                                            ondelete="CASCADE"),
+#                        nullable=True)
+#     type = Column(String, nullable=True)
+#     created_at = Column(TIMESTAMP(timezone=True),
+#                         nullable=False,
+#                         server_default=(text('now()')))
