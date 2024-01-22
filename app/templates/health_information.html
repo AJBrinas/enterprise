@@ -11,8 +11,10 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#input">
   Add New
 </button>
-<div class="col-5">
-<div class="card" style="padding: 2rem;">
+<div class="row">
+<div class="col-1"></div>
+<div class="col-10">
+<div id="health-info-table" class="card">
   <h5 class="card-title">Health information of user</h5>
     <table class="table" id="example">
     <thead>
@@ -33,7 +35,9 @@
         <td>{{ rs.s_name}}</td>
         <td>{{ rs.gender}}</td>
         <td>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view-{{ rs.id }}">View</button> | <a href="health-edit/{{rs.id}}" class="btn btn-success">Edit</a> | <a href="health-delete/{{ rs.id }}" class="btn btn-danger">Delete</a>
+          <a href="health-view/{{ rs.id }}" class="btn btn-ghost-light">View</a> | 
+          <a href="health-edit/{{ rs.id }}" class="btn btn-success">Edit</a> | 
+          <a href="health-delete/{{ rs.id }}" class="btn btn-danger">Delete</a>
         </td>
       </tr>
       {% endfor %}
@@ -42,7 +46,10 @@
 
 </div>
 </div>
-
+</div>
+<a class="btn btn-primary">
+  Add New
+</a>
 
 
 <!-- Modal Input Data -->
@@ -53,11 +60,10 @@
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Create Health Information</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
 
-          <form action="/health-information/health-input" method="post">
+      <div class="modal-body">
+        <form action="/health-information/health-input" method="post">
           <div class="mb-3">
-            
             <div class="row">
               <div class="col-4">
                 <label for="f_name" class="form-label">First Name</label>
@@ -73,12 +79,15 @@
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input type="password" name="pwd" class="form-control" id="exampleInputPassword1" required="true">
           </div> -->
-          
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Submit</button></form>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
       </div>
-      </div>
+    </div>
+  </div>
+</div>
 
 
 {% endblock content %}

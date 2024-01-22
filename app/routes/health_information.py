@@ -33,17 +33,17 @@ def root(request: Request, db: db_dependency):
 
 #  Home
 @router.get("/health")
-def add_health_info(request: Request):
+def goto_health_info(request: Request):
     return temp.TemplateResponse("add_health_info.html",
                                  {"request": request})
 
 
 # Creating a health Info
 @router.post("/health-input", status_code=status.HTTP_201_CREATED)
-def add(request: Request,
-        db: db_dependency,
-        f_name: str = Form(...),
-        l_name: str = Form(...)):
+def add_health_info(request: Request,
+                    db: db_dependency,
+                    f_name: str = Form(...),
+                    l_name: str = Form(...)):
     user = cbhi.Health_Information(f_name=f_name, s_name=l_name)
     db.add(user)
     db.commit()
@@ -53,8 +53,8 @@ def add(request: Request,
 
 # edit of health information
 @router.put("/health-edit/{user_id}")
-def edit(request: Request,  user_id: int,
-         db: db_dependency):
+def edit_health_info(request: Request,  user_id: int,
+                     db: db_dependency):
     # Get the user from the database by its id
     user = db.query(users.User).filter(users.User.id == user_id).first()
     return temp.TemplateResponse("edit_health_info.html",
@@ -67,3 +67,11 @@ def edit(request: Request,  user_id: int,
 
 #     health = db.query().all()
 #     return health
+
+
+# Vaccine
+@router.get('/vaccine')
+def get_vaccine(request: Request):
+
+    return temp.TemplateResponse('health_vaccine.html',
+                                 {'request': request})

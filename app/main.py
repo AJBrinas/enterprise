@@ -8,7 +8,7 @@ app = FastAPI(
 )
 
 temp = Jinja2Templates(directory="app/templates")
-app.mount("/static", StaticFiles(directory='app/static'), name="static")
+app.mount("/static", StaticFiles(directory='app/static/'), name="static")
 
 
 @app.get("/")
