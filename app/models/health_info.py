@@ -10,7 +10,8 @@ class User_Health(Base):
     user_health_id = Column(Integer,
                             primary_key=True,
                             nullable=False)
-    f_name = Column(String)
-    s_name = Column(String)
-    gender = Column(String)
+    f_name = Column(String, nullable=False)
+    s_name = Column(String, nullable=False)
+    gender = Column(String, nullable=False)
     # birthday = Column('birthdate', TIMESTAMP)  # type: ignore
+
