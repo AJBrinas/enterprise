@@ -112,3 +112,18 @@ def read_contacts(db: db_dependency, limit: int = 10):
     contacts = db.query(s_health.EmergencyContact).limit(limit)
     c = contacts.all()
     return {"health-data": c}
+
+
+# Get all data without html
+@router.get("/infos", response_class=ORJSONResponse)
+def read_health(request: Request, db: db_dependency, limit: int = 20):
+    health = db.query(s_health.HealthInformation).limit(limit).all()
+
+    if not health:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No informations yet."
+            )
+
+    return temp.TemplateResponse('health_records.html', {'request': request,
+                                                         "health": health})

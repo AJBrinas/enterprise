@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" data-layout="horizontal" data-layout-style="" data-layout-position="fixed" data-topbar="light">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Bitbo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', path='images/favicon.ico')}}">
+
+    <!-- plugin css -->
+    <!-- <link href="{{ url_for('static', path='libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" /> -->
+
+    <!-- Layout config Js -->
+    <script src="{{ url_for('static', path='js/layout.js')}}"></script>
+    <!-- Bootstrap Css -->
+    <link href="{{ url_for('static', path='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{{ url_for('static', path='/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{ url_for('static', path='/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- custom Css-->
+    <link href="{{ url_for('static', path='/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ url_for('static', path='css/main.css')}}" rel="stylesheet" type="text/css" />
+    
+    
+    <!-- datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.4.0/css/fixedHeader.dataTables.min.css">
+
+
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+      <!-- header -->
+        {% include 'navbar.html' %}
+           
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div cl
+        ="main-content">
+
+            <div class="page-content">
+        <!-- page-content -->
+             
+        {% block content%}
+        
+        {% endblock content %}
+            </div>
+            <!-- End Page-content -->
+    <!-- footer -->
+        {% include 'footer.html' %}
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+       
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ url_for('static', path='libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- <script src="{{ url_for('static', path='libs/simplebar/simplebar.min.js')}}"></script> -->
+    <!-- <script src="{{ url_for('static', path='libs/node-waves/waves.min.js')}}"></script> -->
+    <script src="{{ url_for('static', path='libs/feather-icons/feather.min.js')}}"></script>
+    <script src="{{ url_for('static', path='js/pages/plugins/lord-icon-2.1.0.js')}}"></script>
+    
+    <!-- apexcharts -->
+    <script src="{{ url_for('static', path='js/plugins.js')}}"></script>
+    <script src="{{ url_for('static', path='libs/apexcharts/apexcharts.min.js')}}"></script>
+    
+    <!-- Vector map-->
+    <!-- <script src="{{ url_for('static', path='libs/jsvectormap/js/jsvectormap.min.js')}}"></script> -->
+    <!-- <script src="{{ url_for('static', path='libs/jsvectormap/maps/world-merc.js')}}"></script> -->
+    
+    <!-- Dashboard init -->
+    <script src="{{ url_for('static', path='js/pages/dashboard-analytics.init.js')}}"></script>
+    
+    <!-- App js -->
+    <script src="{{ url_for('static', path='js/app.js')}}"></script>
+
+    <!-- datatables -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js" ></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" ></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js" ></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js" ></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap4.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" ></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js" ></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js" ></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js" ></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.4.0/js/dataTables.fixedHeader.min.js" ></script>
+    
+</body>
+
+</html>

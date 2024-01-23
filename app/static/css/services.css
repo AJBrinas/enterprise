@@ -1,46 +1,56 @@
-.container{
-  margin-top: 3%;
-}
+
+
   /*grid*/
+  
   .icon {
     font-size: 100px; /* Adjust the size as needed */
-    color: #10364f; 
+    color: #ffffff; 
   }
   
   /* Define the button styles */
   
   .hover-button {
-    min-width: 350px; /* Set a minimum width */
-    min-height: 200px; /* Set a minimum height */
-    padding: 30px 45px;
+    min-width: 300px; /* Set a minimum width */
+    min-height: 300px; /* Set a minimum height */
+    padding: 15px 30px;
     font-size: 18px;
-    background-color: #ffffff;
+    background-color: #3498db;
     color: #ffffff;
-    
-    border: 1px solid; /* Set your border properties */
-    border-color: gray;
-    border-radius: 3px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     display: flex; /* Center content horizontally and vertically */
     flex-direction: column; /* Align content in a column layout */
     align-items: center; /* Center content horizontally */
     justify-content: center; /* Center content vertically */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
   }
   
   
   
   /* Define the hover effect */
   .hover-button:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow on hover */
-  
-  transform: scale(1.03); /* Zoom in by 10% on hover */
+  background-color: #b92929; /* Change the background color on hover */
   }
   .custom-h4 {
-    color: #10364f;
+    color: white;
 }
 .title{
+  text-align: center;
+  color: #3498db;
   font-family: 'Times New Roman', Times, serif;
+  font-weight: 500;
+
+}
+.h4title{
+  text-align: center;
+  margin-bottom: 2%;
+  color: #3498db;
+  font-family: 'Montesarrat-Bold', sans-serif;
+  font-weight: 300;
+
+}
+.container{
+  margin-top: 1.5%;
 }
 
