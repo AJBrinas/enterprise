@@ -15,19 +15,10 @@
     background-color: lightgreen;
     color:black;
 }
-.delete{
+.d-flex{
     border-radius: 5px;
-    background-color: red;
-    border: none;
-    color: white;
-}
-.delete:hover{
-    background-color: lightcoral;
-    color:black;
-}
-.d-flex .form-control{
-    border-radius: 5px;
-    margin-left: 60%;
+   
+    margin-left: 67%;
     width: 20%;
 }
 .search-button{
@@ -40,37 +31,10 @@
     color: white;
     
 }
-.add-button{
-    background-color: lightgreen;
-    border-radius: 5px;
-    border: none;
-    
-}
-.add-button:hover{
-    background-color: rgb(52, 255, 52);
-    color: white;
-}
 td, th, tr{
     text-align: center;
     cursor: pointer;
 }
-tbody tr:hover{
+tr:hover{
 background-color: lightblue;    
-}
-form{
-    margin-top: -2%
-}
-.container-fluid{
-margin-top: -20%;
-}
-.modal-content{
-    width: 200%;
-    margin-left: -45%;
-}
-.form-label1 span{
-    color: red;
-}
-.form-label1 {
-    text-align: left;
-    display: block;
 }
