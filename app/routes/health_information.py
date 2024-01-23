@@ -114,7 +114,7 @@ def read_contacts(db: db_dependency, limit: int = 10):
     return {"health-data": c}
 
 
-# Get all data without html
+# Get all data with html
 @router.get("/infos", response_class=ORJSONResponse)
 def read_health(request: Request, db: db_dependency, limit: int = 20):
     health = db.query(s_health.HealthInformation).limit(limit).all()
