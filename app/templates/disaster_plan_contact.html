@@ -8,34 +8,23 @@
 
 {% block content %}
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#input">
-  Add New
-</button>
 <div class="card" style="padding: 2rem;">
-  <h5 class="card-title">Health information of user</h5>
+  <h5 class="card-title">Contact Information</h5>
     <table class="table" id="example">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Actions</th>
+        <th scope="col">Department</th>
+        <th scope="col">Contact Name</th>
+        <th scope="col">Contact Number</th>
 
       </tr>
     </thead>
     <tbody>
-      {% for rs in users %}
       <tr>
-        <th scope="row">{{ rs.id }}</th>
-        <td>{{ rs.f_name}}</td>
-        <td>{{ rs.s_name}}</td>
-        <td>{{ rs.gender}}</td>
-        <td>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view">View</button> | <a href="health-edit/{{rs.id}}" class="btn btn-success">Edit</a> | <a href="health-delete/{{ rs.id }}" class="btn btn-danger">Delete</a>
-        </td>
+        <th scope="row">Fire Department</th>
+        <td>John Brinas</td>
+        <td>0909246521515</td>
       </tr>
-      {% endfor %}
     </tbody>
   </table>
 </div>

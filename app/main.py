@@ -8,7 +8,7 @@ app = FastAPI(
 )
 
 temp = Jinja2Templates(directory="app/templates")
-app.mount("/static", StaticFiles(directory='app/static'), name="static")
+app.mount("/static", StaticFiles(directory='app/static/'), name="static")
 
 
 @app.get("/")
@@ -16,6 +16,11 @@ def root(Request: Request):
     return temp.TemplateResponse("sample.html",
                                  {"request": Request}
                                  )
+
+
+@app.get("/s")
+def here(Request: Request):
+    return {"msg": "hello"}
 
 
 app.include_router(health_information.router)

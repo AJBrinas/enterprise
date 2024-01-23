@@ -42,6 +42,7 @@ class Medical(Base):
     health_id = Column(Integer, ForeignKey("c_health_information.id",
                                            ondelete="CASCADE"),
                        nullable=True)
+    type = Column(String, nullable=True)
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False,
                         server_default=(text('now()')))
