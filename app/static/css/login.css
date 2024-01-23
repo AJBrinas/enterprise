@@ -9,7 +9,7 @@
 .center {
   position: absolute;
   top: 48%;
-  left: 115%;
+  left: 85%;
   transform: translate(-50%, -50%);
   width: 30%;
   height: 70%;
@@ -106,12 +106,10 @@ text-align: center;
 }
 
 .forgotpassword {
-margin: 5px 0;
+margin: 30px 0;
 text-align: left;
 font-size: 12px;
 color: #000000;
-margin-left: 15%;
-margin-top: 5%;
 }
 .forgotpassword a{
 color: #d92626;
@@ -154,57 +152,28 @@ z-index: 1;
   to { opacity: 2;}
 }
 .row{
-padding: 20px;
+padding: 5px;
 text-align: center; 
 font-size: 17px;
 font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
  
 .header1{
-  font-weight: bold;   
-  font-size: x-large;   
+font-weight: bold;   
+font-size: x-large;   
+text-align: left;
+margin-top: 280px;
+margin-left: 8%;
+color: black;
+}
+
+.paragraph{
   text-align: left;
-  margin-top: 280px;
   margin-left: 8%;
-  color: black;
-  }
-  
-  .paragraph{
-    text-align: left;
-    margin-left: 8%;
-    font-size: large;
-    margin-top: 1%;
-  }
-  
-.margintop{
-  margin-top: 8%;
-  margin-left: 10%;
+  font-size: large;
+  margin-top: 1%;
 }
 
 h4{
-  text-align: center;
-  font-weight: bolder;
+  margin-left: 15%;
 }
-.SignUp{
-  margin: 30px 0;
-  text-align: left;
-  font-size: 12px;
-  color: #000000;
-  display: inline-block;
-
-}
-
-  .SignUp a{
-  color: blue;
-  text-decoration: none;
-  }
-  .SignUp a:hover {
-  text-decoration: underline;
-  }
-  .bitbo-pic{
-    margin-top: 10%;
-    margin-left: 7%;
-    width: 55%;
-    height: 90%;
-
-  }

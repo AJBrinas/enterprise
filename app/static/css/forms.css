@@ -1,41 +1,24 @@
 
+.navbar-nav {
+    justify-content: flex-start; /* Align items to the left */
+    margin-left: 60%;
+  }
+  .nav-link {
+    margin-right: 20px; /* Add some space between the links */
+  }
+  .navbar-nav .nav-link {
+    color: black !important; /* Use !important to force the color change */
+  }
+  .navbar-nav .nav-link:hover {
+    color: blue !important; /* Set the hover color to blue */
+  }
+  
+  .navbar{
+    padding: 0;
+    position: relative; /* Set the navbar to a relative position */
+    z-index: 2; /* Make sure the navbar is above other content */
+  }
   li a span {
   font-size: medium;
   }
-  .asterisk span{
-    color: red;
-  }
-  .button-container {
-    display: flex; /* Enable flexbox layout */
-    align-items: center; /* Align items vertically in the center */
-    margin-left: 90%;
-}
-
-.save-button {
-    width: 10px;
-    margin-left: 10px; /* Add some space between the link and the button */
-}
-
-.square{
-  margin-top: -2%;
-}
-/* dropdown with another fields */
-/* #additionalFieldsEmployed {
-  margin-top: 20px; /* Adjust the margin-top as needed 
   
-}
-#additionalFieldsStudent{
-  margin-left: 50%;
-}
-
-#elementaryFields{
-  margin-left: 50%;
-}
-#highSchoolFields{
-  margin-left: 50%;
-}
-#seniorHighSchoolFields{
-  margin-left: 50%;
-}
-#indigenousYes{
-} */
