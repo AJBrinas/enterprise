@@ -24,22 +24,16 @@ db_dependency = Annotated[Session, Depends(get_db)]
 def create_user(user: us.Create,
                 db: db_dependency):
     # Check if username already exists 6
-    exists = db.query(u).filter(u.email == user.email).first()
+  
+    hsh = utils.hash(user.password)
+    user.password = hsh
 
-    if not exists:
-        hsh = utils.hash(user.password)
-        user.password = hsh
+    new_user = u.User(**user.dict())
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
 
-        new_user = u.User(**user.dict())
-        db.add(new_user)
-        db.commit()
-        db.refresh(new_user)
-
-        return new_user
-    else:
-        raise HTTPException(status_code=status.HTTP_302_FOUND,
-                            detail="Already Used!")
-
+    return new_user
 
 
 # Getting one users
@@ -49,8 +43,9 @@ def create_user(user: us.Create,
 def get_user(id: int, db: db_dependency,
              current_user: int = Depends(oauth2.get_current_user)):
     user = db.query(u.User).filter(u.User.id == id).first()
-    if user:
+    if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail="User found")
+                            detail="User not found")
 
     return user
+

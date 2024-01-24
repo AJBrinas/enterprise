@@ -22,3 +22,13 @@ class Login(BaseModel):
 
 class Create(UserInput):
     pass
+
+
+# Authentication
+class Token(BaseModel):
+    access_token: str
+    token_Type: str
+
+
+class TokenData(BaseModel):
+    id: Optional[str] = None
