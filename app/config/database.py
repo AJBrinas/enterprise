@@ -5,11 +5,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from .settings import settings as s
 from typing import Annotated
 
-
-URL_DATABASE = f"postgresql://{
-    s.database_username}:{
-        s.database_password}@{
-            s.database_hostname}:{s.database_port}/{s.database_name}"
+URL_DATABASE = (
+    f"postgresql://{s.database_username}:"
+    f"{s.database_password}@{s.database_hostname}:"
+    f"{s.database_port}/{s.database_name}"
+)
 
 
 engine = create_engine(URL_DATABASE)
