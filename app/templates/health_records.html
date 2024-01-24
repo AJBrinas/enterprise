@@ -146,48 +146,75 @@
                 <form>
                     <div class="mb-3">
                         <p><strong>PERSONAL DETAILS</strong></p>
-                        <label for="editName" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="editName" value="">
-                    
+                        <label for="editName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="editName">
+                        <br>
+                        <label for="editName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="editName">
+                        <br>
                         <div class="mb-3">
                         <label for="editBirthDate" class="form-label">Date of Birth (YYYY-MM-DD)</label>
-                        <input type="text" class="form-control flatpickr" id="editBirthDate" value="">
+                        <input type="date" class="form-control flatpickr" id="editBirthDate">
                         </div>
 
                         <label for="editGender" class="form-label">Gender</label>
-                        <input type="text" class="form-control" id="editGender" value="">
-                    
+                        <select class="form-select" id="editIllness">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <br>
                         <label for="editAddress" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="editAddress" value="">
-                    
+                        <input type="text" class="form-control" id="editAddress">
+                        <br>
                         <label for="editContact" class="form-label">Contact Number</label>
-                        <input type="text" class="form-control" id="editContact" value="">
+                        <input type="tel" class="form-control" id="editContact" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required placeholder="099-123-456-78">
                         
                         <br><p><strong>VACCINATION DETAILS</strong></p>
                         <label for="editVaccine" class="form-label">Vaccine</label>
-                        <input type="text" class="form-control" id="editVaccine" value="">
-                    
-                        <label for="editVaccinationDate" class="form-label">Vaccination Date</label>
-                        <input type="text" class="form-control" id="editVaccinationDate" value="">
-                    
+                        <select class="form-select" id="editIllness">
+                            <option value="Option 1">Option 1</option>
+                            <option value="Option 2">Option 2</option>
+                        </select>
+                        <br>
+                        <div class="mb-3">
+                        <label for="editVaccinationDate" class="form-label">Vaccination Date (YYYY-MM-DD)</label>
+                        <input type="date" class="form-control flatpickr" id="editVaccinationDate">
+                        </div>
+
                         <label for="editDose" class="form-label">Dose</label>
-                        <input type="text" class="form-control" id="editDose" value="">
+                        <select class="form-select" id="editIllness">
+                            <option value="Option 1">Option 1</option>
+                            <option value="Option 2">Option 2</option>
+                        </select>
                         
                         <br><p><strong>MEDICAL HISTORY</strong></p>
                         <label for="editIllness" class="form-label">Illness</label>
-                        <input type="text" class="form-control" id="editIllness" value="">
-                    
-                        <label for="editDiagnoseDate" class="form-label">Date of Diagnose</label>
-                        <input type="text" class="form-control" id="editDiagnoseDate" value="">
-                        
-                        <label for="editMedicine" class="form-label">Medicine</label>
-                        <input type="text" class="form-control" id="editMedicine" value="">
+                        <select class="form-select" id="editIllness">
+                            <option value="Option 1">Option 1</option>
+                            <option value="Option 2">Option 2</option>
+                        </select>
 
+                        <br>
+                        <div class="mb-3">
+                        <label for="editDiagnoseDate" class="form-label">Date of Diagnose (YYYY-MM-DD)</label>
+                        <input type="date" class="form-control flatpickr" id="editDiagnoseDate">
+                        </div>
+                        <label for="editMedicine" class="form-label">Medicine</label>
+                        <select class="form-select" id="editIllness">
+                            <option value="Option 1">Option 1</option>
+                            <option value="Option 2">Option 2</option>
+                        </select>
+                        
+                        <br>
                         <label for="editDosage" class="form-label">Dosage</label>
-                        <input type="text" class="form-control" id="editDosage" value="">
-                    
+                        <select class="form-select" id="editIllness">
+                            <option value="Option 1">Option 1</option>
+                            <option value="Option 2">Option 2</option>
+                        </select>
+
+                        <br>
                         <label for="editFrequency" class="form-label">Frequency</label>
-                        <input type="text" class="form-control" id="editFrequency" value="">
+                        <input type="text" class="form-control" id="editFrequency">
                     
                     </div>
 
