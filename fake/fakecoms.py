@@ -31,10 +31,7 @@ for i in range(1, 80):
     organizer = fake.company()
     created_at = generate_random_date_tz().strftime('%Y-%m-%d %H:%M:%S %z')
 
-    insert_query = f"""
-    INSERT INTO community_events ("EventName",
-    "EventType", "EventDate", "EventLocation", "Organizer", "created_at")
-    VALUES ('{event_name}', '{event_type}', '{event_date}',
-    '{event_location}', '{organizer}', '{created_at}');"""
+    insert_query = f"""INSERT INTO community_events ("EventName", "EventType", "EventDate", "EventLocation", "Organizer", "created_at")
+    VALUES ('{event_name}', '{event_type}', '{event_date}', '{event_location}', '{organizer}', '{created_at}');"""
 
     print(insert_query)

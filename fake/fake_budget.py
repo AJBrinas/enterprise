@@ -15,7 +15,7 @@ def generate_random_date():
 
 
 # Generate 60 rows of fake data for the BudgetTracking model
-for i in range(1, 100):
+for i in range(1, 150):
     budget_name = fake.word()
     budget_amount = random.randint(1000, 100000)
     expenditure = random.randint(0, budget_amount)
