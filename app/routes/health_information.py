@@ -117,7 +117,6 @@ def read_all_health(db: db_dependency, id: int):
             status_code=status.HTTP_404_NOT_FOUND,
             detail="No informations yet."
             )
-
     emergency_contact = health.emergency_contact
     contact = db.query(ec
                        ).filter(
@@ -125,3 +124,4 @@ def read_all_health(db: db_dependency, id: int):
                                 ).first()
     return {"information": health,
             "contact": contact}
+
