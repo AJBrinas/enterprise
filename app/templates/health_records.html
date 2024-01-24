@@ -16,7 +16,7 @@
 <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 
-
+<div><p><br /><br /><br /><br /><br /></p></div>
 <div class="container-fluid">
     <!-- start page title -->
     <div class="row">
@@ -48,39 +48,39 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-
                     <tbody>
-                        {% for rs in health %}
+                        
+                        {% for i in health %}
+                            
                         <tr>
-                            <th scope="row" style="width: 10px;">
+                            <th scope="row">
                                 <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
                                 </div>
                             </th>
-                            <td>{{rs.id}}</td>
-                            <td>{{rs.full_name}}r</td>
-                            <td>{{rs.gender}}</td>
-                            <td>{{rs.address}}</td>
-
+                            <td></td>
+                            <td>{{i.full_name}}</td>
+                            <td>{{i.date_of_birth}}</td>
+                            <td>{{i.address}}</td>
                             <td>
-                                <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal" >
+                                <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal">
                                     <a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
                                 </button>
                                 <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
                                     <a href="#" class="dropdown-item"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
                                 </button>
-
-                                <button class="btn btn-soft-primary" type="button" onclick="">
+                                <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                     <a class="dropdown-item"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
                                 </button>
-                                </div>
                             </td>
                         </tr>
+                        
                         {% endfor %}
+
                     </tbody>
-                  </table>
-                  </div>
-                <div>
+                </table>
+            </div>
+            <div>
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@ def generate_random_date():
 
 
 # Generate 60 rows of fake data for the Announcement model
-for i in range(1, 61):
+for i in range(1, 100):
     announcement_title = fake.sentence()
     announcement_content = fake.paragraph()
     announcement_date = generate_random_date().strftime('%Y-%m-%d %H:%M:%S')

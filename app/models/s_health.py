@@ -91,7 +91,7 @@ class HealthInformation(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     full_name = Column(String, index=True)
-    date_of_birth = Column(String)
+    date_of_birth = Column(DATE, nullable=False)
     gender = Column(String)
     address = Column(String)
     contact_number = Column(String)
