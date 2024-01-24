@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request
-from app.routes import health_information, disaster_plan
+from app.routes import health_information, disaster_plan, financial_management
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
@@ -25,3 +25,4 @@ def here(Request: Request):
 
 app.include_router(health_information.router)
 app.include_router(disaster_plan.router)
+app.include_router(financial_management.router)

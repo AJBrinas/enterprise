@@ -5,7 +5,8 @@
 {% endblock title %}
     
 {% block content %}
-
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- Flatpickr library -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -17,6 +18,84 @@
 <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 
 
+<div class="main-content">
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        <div class="container-fluid">
+            <div class="header-body">
+                <div class="row">
+                    <div><p></p></div>
+                    <!-- Donut Chart -->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="donutChart" class="chartjs-chart" width="460" height="225"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <!-- Start of row for stat cards -->
+                            <!-- Stat Card 1 -->
+                            <div class="col-xl-12 col-lg-8">
+                                <div class="card-animate card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
+                                                <span class="h2 font-weight-bold mb-0">350,897</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                                    <i class="fas fa-chart-bar"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                                            <span class="text-nowrap">Since last month</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stat Card 2 (below the first stat chart) -->
+                            <div class="col">
+                                <div class="card-animate card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">New Stat</h5>
+                                                <span class="h2 font-weight-bold mb-0">123</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                                    <!-- Use a different icon for the second stat chart -->
+                                                    <i class="fas fa-users"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 1.23%</span>
+                                            <span class="text-nowrap">Since yesterday</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of row for stat cards -->
+                    </div>
+                        <!-- Line Chart -->
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <canvas id="lineChart" class="chartjs-chart" width="460" height="225"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div><p></p></div>
 <div class="container-fluid">
     <!-- start page title -->
     <div class="row">
@@ -48,39 +127,39 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-
                     <tbody>
-                        {% for rs in health %}
+                        
+                        {% for i in health %}
+                            
                         <tr>
-                            <th scope="row" style="width: 10px;">
+                            <th scope="row">
                                 <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
                                 </div>
                             </th>
-                            <td>{{rs.id}}</td>
-                            <td>{{rs.full_name}}r</td>
-                            <td>{{rs.gender}}</td>
-                            <td>{{rs.address}}</td>
-
+                            <td></td>
+                            <td>{{i.full_name}}</td>
+                            <td>{{i.date_of_birth}}</td>
+                            <td>{{i.address}}</td>
                             <td>
-                                <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal" >
+                                <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal" value="{{i.id}}">
                                     <a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
                                 </button>
                                 <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
-                                    <a href="#" class="dropdown-item"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
+                                    <a href="#" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
                                 </button>
-
-                                <button class="btn btn-soft-primary" type="button" onclick="">
+                                <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                     <a class="dropdown-item"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
                                 </button>
-                                </div>
                             </td>
                         </tr>
+                        
                         {% endfor %}
+
                     </tbody>
-                  </table>
-                  </div>
-                <div>
+                </table>
+            </div>
+            <div>
             </div>
         </div>
     </div>
@@ -269,31 +348,110 @@
 
 
 <script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            // Disable sorting on the last column
-            "columnDefs": [
-                { "orderable": false, "targets": 5 }
-            ],
-            language: {
-                // Customize pagination prev and next buttons: use arrows instead of words
-                'paginate': {
-                    'previous': '<span class="fa fa-chevron-left"></span>',
-                    'next': '<span class="fa fa-chevron-right"></span>'
-                },
-                // Customize the number of elements to be displayed
-                "lengthMenu": 'Display <select class="form-control input-sm">'+
-                '<option value="10">10</option>'+
-                '<option value="20">20</option>'+
-                '<option value="30">30</option>'+
-                '<option value="40">40</option>'+
-                '<option value="50">50</option>'+
-                '<option value="-1">All</option>'+
-                '</select> results'
+    document.addEventListener('DOMContentLoaded', function () {
+        // Dummy data for the donut chart
+        var donutChartData = {
+            labels: ['Label 1', 'Label 2'],
+            datasets: [{
+                data: [50, 50], // Example data
+                backgroundColor: ['--vz-primary', '--vz-light'],
+            }]
+        };
+
+        // Create the donut chart
+        var ctxDonut = document.getElementById('donutChart').getContext('2d');
+        var donutChart = new Chart(ctxDonut, {
+            type: 'doughnut',
+            data: donutChartData,
+            options: {
+                cutout: '50%', // Adjust this value to control the size of the hole in the center
+                responsive: true,
+                maintainAspectRatio: false,
             }
         });
     });
+    document.addEventListener('DOMContentLoaded', function () {
+        // Dummy data for the line chart
+        var lineChartData = {
+            labels: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
+            datasets: [{
+                label: 'Line Chart',
+                borderColor: 'rgb(75, 192, 192)',
+                data: [12, 19, 3, 5, 2], // Example data
+                fill: false,
+            }]
+        };
+
+        // Create the line chart
+        var ctxLine = document.getElementById('lineChart').getContext('2d');
+        var lineChart = new Chart(ctxLine, {
+            type: 'line',
+            data: lineChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'category',
+                        labels: lineChartData.labels,
+                    },
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+            },
+        });
+    });
+    
+    $(document).ready(function() {
+    $('#example').DataTable({
+        // Disable sorting on the last column
+        "columnDefs": [
+            { "orderable": false, "targets": 5 }
+        ],
+        language: {
+            'paginate': {
+                'previous': '<span class="fa fa-chevron-left"></span>',
+                'next': '<span class="fa fa-chevron-right"></span>'
+            },
+            // Customize the number of elements to be displayed
+            "lengthMenu": 'Display <select class="form-control input-sm">'+
+            '<option value="10">10</option>'+
+            '<option value="20">20</option>'+
+            '<option value="30">30</option>'+
+            '<option value="40">40</option>'+
+            '<option value="50">50</option>'+
+            '<option value="-1">All</option>'+
+            '</select> results'
+        },
+    });
+});
+
 </script>
 
-{% endblock content %}
+  <script>
+      $('#modalButton').click(function () {
+      
+         // getting the value of the input fields
+         var product = $('#product').val();
+         var quantity = $('#quantity').val();
+         var price = $('#price').val();
+         var total = $('#total').val();
+         var htmlStr = '<p> Product: ' + product + '</p>' +
+         '<p> Quantity: ' + quantity + '</p>' +
+         '<p> Price: ' + price + '</p>' +
+         '<p> Total: ' + total + '</p>';
+         
+         // adding the data to the modal
+         $('.modal-body').html(htmlStr);
+      });
+   </script>
 
+{% endblock content %}
+{% block css %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
