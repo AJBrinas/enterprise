@@ -49,14 +49,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
+                        {% for i in health %}
+                            
                         <tr>
                             <th scope="row">
                                 <div class="form-check">
                                     <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
                                 </div>
                             </th>
-                            <td>01</td>
-                            <td>Joseph Parker</td>
+                            <td></td>
+                            <td>i.full_name</td>
                             <td>24</td>
                             <td>Rainbow Village, QC VILLE</td>
                             <td>
@@ -71,6 +74,9 @@
                                 </button>
                             </td>
                         </tr>
+                        
+                        {% endfor %}
+
                     </tbody>
                 </table>
             </div>
