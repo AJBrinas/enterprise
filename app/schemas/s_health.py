@@ -4,6 +4,13 @@ from pydantic import BaseModel
 from datetime import date
 
 
+class HealthTable(BaseModel):
+    id: int
+    full_name: str
+    date_of_birth: date
+    address: str
+
+
 class EmergencyContact(BaseModel):
     name: str
     relationship: str
