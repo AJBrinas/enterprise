@@ -133,7 +133,6 @@ def read_health(request: Request, db: db_dependency):
                                                          "health": health})
 
 
-
 # Eventd
 @router.get('/events')
 def get_vaccine(request: Request):
@@ -141,12 +140,14 @@ def get_vaccine(request: Request):
     return temp.TemplateResponse('events.html',
                                  {'request': request})
 
+
 # Disaster Plan
 @router.get('/disaster_response')
-def get_vaccine(request: Request):
+def get_disaster(request: Request):
 
     return temp.TemplateResponse('disaster_response.html',
                                  {'request': request})
+
 
 # Get Health data with Contact Information with html
 @router.get("/infos/all/{id}")
@@ -162,8 +163,8 @@ def read_all_health(db: db_dependency, id: int):
 
     emergency_contact = health.emergency_contact
     contact = db.query(s_health.EmergencyContact
-                       ).filter(s_health.EmergencyContact.id == emergency_contact
+                       ).filter(
+                           s_health.EmergencyContact.id == emergency_contact
                                 ).first()
     return {"information": health,
             "contact": contact}
-
