@@ -1,5 +1,5 @@
 
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 
 {% block title %}
 {% endblock title %}
@@ -27,12 +27,12 @@
       </tr>
     </thead>
     <tbody>
-      {% for rs in users %}
+      {% for rs in infos %}
       <tr>
         <th scope="row">{{ rs.id }}</th>
-        <td>{{ rs.f_name}}</td>
-        <td>{{ rs.s_name}}</td>
+        <td>{{ rs.full_name}}</td>
         <td>{{ rs.gender}}</td>
+        <td>{{ rs.adress}}</td>
         <td>
           <a href="health-view/{{ rs.id }}" class="btn btn-ghost-light">View</a> | 
           <a href="health-edit/{{ rs.id }}" class="btn btn-success">Edit</a> | 

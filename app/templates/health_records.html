@@ -1,5 +1,4 @@
 {% extends 'index.html' %}
-{% load static %}
 {% block content %}
 
 <div class="container-fluid">
@@ -26,36 +25,37 @@
                                     <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
                                 </div>
                             </th>
-                            <th data-ordering="false">ID</th>
                             <th data-ordering="false">Name</th>
-                            <th>Age</th>
+                            <th>Gender</th>
                             <th>Address</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">
-                                <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
-                                </div>
-                            </th>
-                            <td>01</td>
-                            <td>Joseph Parker</td>
-                            <td>24</td>
-                            <td>Rainbow Village, QC VILLE</td>
-                            <td>
-                                <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal">
-                                    <a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
-                                </button>
-                                <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
-                                    <a href="#" class="dropdown-item"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
-                                </button>
-                                <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <a class="dropdown-item"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
-                                </button>
-                            </td>
-                        </tr>
+                    <tbody>    
+                        {% for i in infos %}  
+                                
+                            <tr>
+                                <th scope="row">
+                                    <div class="form-check">
+                                        <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
+                                    </div>
+                                </th>
+                                <td>{{i.full_name}}</td>
+                                <td>{{i.gender}}</td>
+                                <td>{{i.address}}</td>
+                                <td>
+                                    <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal">
+                                        <a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
+                                    </button>
+                                    <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
+                                        <a href="#" class="dropdown-item"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
+                                    </button>
+                                    <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        <a class="dropdown-item"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -99,21 +99,21 @@
                     </div>
                     <div class="col-md-6">
                         <br><br>
-                        <p>{{ rs.full_name }}</p>
+                        <p>full_name</p>
                         <p>None</p>
-                        <p>{{ rs.gender }}</p>
-                        <p>{{ rs.address }}</p>
-                        <p>{{ rs.contact_number }}</p>
+                        <p>gender</p>
+                        <p>address</p>
+                        <p>contact_number</p>
                         <br><br><br><p></p>
                         <p>Sample</p>
                         <p>Date</p>
                         <p>Dose</p>
                         <br><br><br><p></p>
                         <p>Sample</p>
-                        <p>{{ rs.diagnose_date }}</p>
-                        <p>{{ rs.medicine }}</p>
-                        <p>{{ rs.dosage }}</p>
-                        <p>{{ rs.frequency }}</p>
+                        <p>diagnose_date</p>
+                        <p>medicine</p>
+                        <p>dosage</p>
+                        <p>frequency</p>
                     </div>
                 </div>
             </div>
@@ -125,11 +125,11 @@
 </div>
 
 <!-- Edit Modal -->
-<div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel{{rs.id}}" aria-hidden="true">
+<div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel{{rs.id}}">Edit Resident Health Information</h5>
+                <h5 class="modal-title" id="editModalLabel">Edit Resident Health Information</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -138,52 +138,52 @@
                     <div class="mb-3">
                         <p><strong>PERSONAL DETAILS</strong></p>
                         <label for="editName" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="editName" value="{{ rs.full_name }}">
+                        <input type="text" class="form-control" id="editName" value="">
                     
                         <label for="editBirthDate" class="form-label">Date of Birth</label>
                         <input type="text" class="form-control" id="editBirthDate" value="">
                     
                         <label for="editGender" class="form-label">Gender</label>
-                        <input type="text" class="form-control" id="editGender" value="{{ rs.gender }}">
+                        <input type="text" class="form-control" id="editGender" value="">
                     
                         <label for="editAddress" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="editAddress" value="{{ rs.address }}">
+                        <input type="text" class="form-control" id="editAddress" value="">
                     
                         <label for="editContact" class="form-label">Contact Number</label>
-                        <input type="text" class="form-control" id="editContact" value="{{ rs.contact_number }}">
+                        <input type="text" class="form-control" id="editContact" value="">
                         
                         <br><p><strong>VACCINATION DETAILS</strong></p>
                         <label for="editVaccine" class="form-label">Vaccine</label>
-                        <input type="text" class="form-control" id="editVaccine" value="{{ rs.vaccine }}">
+                        <input type="text" class="form-control" id="editVaccine" value="">
                     
                         <label for="editVaccinationDate" class="form-label">Vaccination Date</label>
-                        <input type="text" class="form-control" id="editVaccinationDate" value="{{ rs.vaccination_date }}">
+                        <input type="text" class="form-control" id="editVaccinationDate" value="">
                     
                         <label for="editDose" class="form-label">Dose</label>
-                        <input type="text" class="form-control" id="editDose" value="{{ rs.dose }}">
+                        <input type="text" class="form-control" id="editDose" value="">
                         
                         <br><p><strong>MEDICAL HISTORY</strong></p>
                         <label for="editIllness" class="form-label">Illness</label>
-                        <input type="text" class="form-control" id="editIllness" value="{{ rs.illness }}">
+                        <input type="text" class="form-control" id="editIllness" value="">
                     
                         <label for="editDiagnoseDate" class="form-label">Date of Diagnose</label>
-                        <input type="text" class="form-control" id="editDiagnoseDate" value="{{ rs.diagnose_date }}">
+                        <input type="text" class="form-control" id="editDiagnoseDate" value="">
                         
                         <label for="editMedicine" class="form-label">Medicine</label>
-                        <input type="text" class="form-control" id="editMedicine" value="{{ rs.medicine }}">
+                        <input type="text" class="form-control" id="editMedicine" value="">
 
                         <label for="editDosage" class="form-label">Dosage</label>
-                        <input type="text" class="form-control" id="editDosage" value="{{ rs.dosage }}">
+                        <input type="text" class="form-control" id="editDosage" value="">
                     
                         <label for="editFrequency" class="form-label">Frequency</label>
-                        <input type="text" class="form-control" id="editFrequency" value="{{ rs.frequency }}">
+                        <input type="text" class="form-control" id="editFrequency" value="">
                     
                     </div>
 
                     <!-- Submit button to update information -->
                     <div class="modal-footer d-flex justify-content-end">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="confirmEditBtn{{rs.id}}">Save Changes</button>
+                    <button type="button" class="btn btn-primary" id="confirmEditBtn">Save Changes</button>
                     </div>
                 </form>
             </div>
@@ -222,7 +222,7 @@
         $('#example').DataTable({
             // Disable sorting on the last column
             "columnDefs": [
-                { "orderable": false, "targets": 5 }
+                { "orderable": false, "targets": 4 }
             ],
             language: {
                 // Customize pagination prev and next buttons: use arrows instead of words

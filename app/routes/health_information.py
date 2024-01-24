@@ -81,9 +81,9 @@ def get_vaccine(request: Request):
                                  {'request': request})
 
 
-# Get all data without html
+# Get one data without html
 @router.get("/all/{id}",
-            response_class=ORJSONResponse, response_model=schema.HealthInformation)
+            response_class=ORJSONResponse)
 async def read_item(id: int, db: db_dependency):
     health = db.query(s_health.HealthInformation
                       ).filter(s_health.HealthInformation.id == id
@@ -103,7 +103,7 @@ def read_items(db: db_dependency, limit: int = 10):
             detail="No informations yet."
             )
 
-    return {"health-data": health}
+    return {"health": health}
 
 
 # Get all data without html
@@ -114,11 +114,10 @@ def read_contacts(db: db_dependency, limit: int = 10):
     return {"health-data": c}
 
 
-# Get all data without html
+# Get all data with html
 @router.get("/infos", response_class=ORJSONResponse)
-def read_health(request: Request, db: db_dependency, limit: int = 20):
-    health = db.query(s_health.HealthInformation).limit(limit).all()
-
+def read_health(request: Request, db: db_dependency):
+    health = db.query(s_health.HealthInformation).all()
     if not health:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -126,4 +125,4 @@ def read_health(request: Request, db: db_dependency, limit: int = 20):
             )
 
     return temp.TemplateResponse('health_records.html', {'request': request,
-                                                         "health": health})
+                                                         'infos': health})
