@@ -13,7 +13,7 @@ app.mount("/app/static", StaticFiles(directory='app/static/'), name="static")
 
 @app.get("/")
 def root(Request: Request):
-    return temp.TemplateResponse("health_records.html",
+    return temp.TemplateResponse("login.html",
                                  {"request": Request}
                                  )
 
