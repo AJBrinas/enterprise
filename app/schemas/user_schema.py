@@ -4,7 +4,21 @@ from datetime import datetime
 from pydantic.types import conint
 
 
-class UserResponse(BaseModel):
+class UserValidate(BaseModel):
     id: int
     email: EmailStr
     password: str
+
+
+class UserInput(BaseModel):
+    email: EmailStr
+    password: str
+
+
+class Login(BaseModel):
+    email: EmailStr
+    password: str
+
+
+class Create(UserInput):
+    pass

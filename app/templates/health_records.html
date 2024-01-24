@@ -63,11 +63,11 @@
                             <td>{{i.date_of_birth}}</td>
                             <td>{{i.address}}</td>
                             <td>
-                                <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal">
+                                <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal" value="{{i.id}}">
                                     <a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
                                 </button>
                                 <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
-                                    <a href="#" class="dropdown-item"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
+                                    <a href="#" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
                                 </button>
                                 <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                     <a class="dropdown-item"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
@@ -294,6 +294,24 @@
         });
     });
 </script>
+
+  <script>
+      $('#modalButton').click(function () {
+      
+         // getting the value of the input fields
+         var product = $('#product').val();
+         var quantity = $('#quantity').val();
+         var price = $('#price').val();
+         var total = $('#total').val();
+         var htmlStr = '<p> Product: ' + product + '</p>' +
+         '<p> Quantity: ' + quantity + '</p>' +
+         '<p> Price: ' + price + '</p>' +
+         '<p> Total: ' + total + '</p>';
+         
+         // adding the data to the modal
+         $('.modal-body').html(htmlStr);
+      });
+   </script>
 
 {% endblock content %}
 {% block css %}
