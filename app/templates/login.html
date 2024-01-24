@@ -22,17 +22,18 @@
         <img alt="bitbo logo" src="{{ url_for('static', path='img/bitbo_logo.png')}}" class ="logo" >
     </div>
     <div class="txtfield">
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username">
         <span></span>
         <label for="username">Email</label>
     </div>
     <div class="txtfield">
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password">
         <span></span>
         <label for="password">Password</label>
     </div>
     <div class="pass">
-    <button type="submit" onclick="" class="click">Sign In</button>
+    <!-- <button type="submit">Sign In</button> -->
+    <a href="/health-information/infos" class="btn btn-primary"> Sign In</a>
 <input type="hidden" id="services-url" value="">
 </div>
 <script src="{{ url_for('static', path='js/signin.js')}}" defer></script>
