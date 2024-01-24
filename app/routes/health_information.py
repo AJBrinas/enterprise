@@ -26,44 +26,44 @@ fake_fb = {}
 #     return user
 
 
-@router.get("/")
-def root(request: Request, db: db_dependency):
-    user = db.query(cbhi.Health_Information).all()
+# @router.get("/")
+# def root(request: Request, db: db_dependency):
+#     user = db.query(cbhi.Health_Information).all()
 
-    return temp.TemplateResponse("health_information.html",
-                                 {"request": request,
-                                  "users": user})
+#     return temp.TemplateResponse("health_information.html",
+#                                  {"request": request,
+#                                   "users": user})
 
 
 #  Home
-@router.get("/health")
-def goto_health_info(request: Request):
-    return temp.TemplateResponse("add_health_info.html",
-                                 {"request": request})
+# @router.get("/health")
+# def goto_health_info(request: Request):
+#     return temp.TemplateResponse("add_health_info.html",
+#                                  {"request": request})
 
 
 # Creating a health Info
-@router.post("/health-input", status_code=status.HTTP_201_CREATED)
-def add_health_info(request: Request,
-                    db: db_dependency,
-                    f_name: str = Form(...),
-                    l_name: str = Form(...)):
-    user = cbhi.Health_Information(f_name=f_name, s_name=l_name)
-    db.add(user)
-    db.commit()
-    return RedirectResponse(url=router.url_path_for("root"),
-                            status_code=status.HTTP_303_SEE_OTHER)
+# @router.post("/health-input", status_code=status.HTTP_201_CREATED)
+# def add_health_info(request: Request,
+#                     db: db_dependency,
+#                     f_name: str = Form(...),
+#                     l_name: str = Form(...)):
+#     user = cbhi.Health_Information(f_name=f_name, s_name=l_name)
+#     db.add(user)
+#     db.commit()
+#     return RedirectResponse(url=router.url_path_for("root"),
+#                             status_code=status.HTTP_303_SEE_OTHER)
 
 
 # edit of health information
-@router.put("/health-edit/{user_id}")
-def edit_health_info(request: Request,  user_id: int,
-                     db: db_dependency):
-    # Get the user from the database by its id
-    user = db.query(users.User).filter(users.User.id == user_id).first()
-    return temp.TemplateResponse("edit_health_info.html",
-                                 {"request": request,
-                                  "user": user})
+# @router.put("/health-edit/{user_id}")
+# def edit_health_info(request: Request,  user_id: int,
+#                      db: db_dependency):
+#     # Get the user from the database by its id
+#     user = db.query(users.User).filter(users.User.id == user_id).first()
+#     return temp.TemplateResponse("edit_health_info.html",
+#                                  {"request": request,
+#                                   "user": user})
 
 
 # @router.get('/health-list')
@@ -74,25 +74,23 @@ def edit_health_info(request: Request,  user_id: int,
 
 
 # Vaccine
-@router.get('/vaccine')
-def get_vaccine(request: Request):
+# @router.get('/vaccine')
+# def get_vaccine(request: Request):
 
-    return temp.TemplateResponse('health_vaccine.html',
-                                 {'request': request})
+#     return temp.TemplateResponse('health_vaccine.html',
+#                                  {'request': request})
 
-
-# Get all data without html
+# WITHOUT HTML
+# Get data  without html
 @router.get("/all/{id}",
-            response_class=ORJSONResponse, response_model=schema.HealthInformation)
+            response_class=ORJSONResponse)
 async def read_item(id: int, db: db_dependency):
     health = db.query(s_health.HealthInformation
                       ).filter(s_health.HealthInformation.id == id
                                ).first()
-    print(health)
     return {"health-data": health}
 
 
-# Get all data without html
 @router.get("/all", response_class=ORJSONResponse)
 def read_items(db: db_dependency, limit: int = 10):
     health = db.query(s_health.HealthInformation).limit(limit).all()
@@ -107,14 +105,20 @@ def read_items(db: db_dependency, limit: int = 10):
 
 
 # Get all data without html
-@router.get("/contacts")
+@router.get("/contacts", status_code=status.HTTP_200_OK)
 def read_contacts(db: db_dependency, limit: int = 10):
     contacts = db.query(s_health.EmergencyContact).limit(limit)
     c = contacts.all()
+    if not c:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No informations yet."
+            )
     return {"health-data": c}
 
 
-# Get all data without html
+# WITH HTML
+# Get all data with html
 @router.get("/infos", response_class=ORJSONResponse)
 def read_health(request: Request, db: db_dependency):
     health = db.query(s_health.HealthInformation).all()
@@ -127,6 +131,7 @@ def read_health(request: Request, db: db_dependency):
 
     return temp.TemplateResponse('health_records.html', {'request': request,
                                                          "health": health})
+
 
 
 # Eventd
@@ -142,3 +147,23 @@ def get_vaccine(request: Request):
 
     return temp.TemplateResponse('disaster_response.html',
                                  {'request': request})
+
+# Get Health data with Contact Information with html
+@router.get("/infos/all/{id}")
+def read_all_health(db: db_dependency, id: int):
+    health = db.query(s_health.HealthInformation
+                      ).filter(s_health.HealthInformation.id == id
+                               ).first()
+    if not health:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No informations yet."
+            )
+
+    emergency_contact = health.emergency_contact
+    contact = db.query(s_health.EmergencyContact
+                       ).filter(s_health.EmergencyContact.id == emergency_contact
+                                ).first()
+    return {"information": health,
+            "contact": contact}
+
