@@ -10,7 +10,8 @@ class EmergencyContact(Base):
     contact_name = Column(String, index=True)
     relationship = Column(String)
     contact_number = Column(String)
-    person_info = Column(Integer, ForeignKey('health_information.id'))
+    person_info = Column(Integer, ForeignKey('health_information.id',
+                                             ondelete='CASCADE'))
 
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False,
@@ -31,7 +32,8 @@ class MedicalHistory(Base):
     chronic_conditions = Column(JSON)
     surgeries = Column(JSON)
     family_history = Column(JSON)
-    person_info = Column(Integer, ForeignKey('health_information.id'))
+    person_info = Column(Integer, ForeignKey('health_information.id',
+                                             ondelete='CASCADE'))
 
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False,
@@ -51,7 +53,8 @@ class VaccinationRecord(Base):
     vaccine = Column(String)
     vaccinated_date = Column(DATE)
     dose = Column(String)
-    person_info = Column(Integer, ForeignKey('health_information.id'))
+    person_info = Column(Integer, ForeignKey('health_information.id',
+                                             ondelete='CASCADE'))
 
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False,
@@ -73,7 +76,8 @@ class Medication(Base):
     dosage = Column(String)
     frequency = Column(String)
     diagnosed_date = Column(DATE)
-    person_info = Column(Integer, ForeignKey('health_information.id'))
+    person_info = Column(Integer, ForeignKey('health_information.id',
+                                             ondelete='CASCADE'))
 
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False,
