@@ -35,6 +35,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
                                 </div>
+
                             </th>
                             <th data-ordering="false">ID</th>
                             <th data-ordering="false">Name</th>
@@ -43,33 +44,34 @@
                             <th>Action</th>
                         </tr>
                     </thead>
+
                     <tbody>
+                        {% for rs in health %}
                         <tr>
-                            <th scope="row">
-                                <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
-                                </div>
-                            </th>
-                            <td>01</td>
-                            <td>Joseph Parker</td>
-                            <td>24</td>
-                            <td>Rainbow Village, QC VILLE</td>
+                            <td>{{rs.id}}</td>
+                            <td>{{rs.full_name}}r</td>
+                            <td>{{rs.gender}}</td>
+                            <td>{{rs.address}}</td>
+
                             <td>
-                                <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal">
+                                <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal" >
                                     <a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
                                 </button>
                                 <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
                                     <a href="#" class="dropdown-item"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
                                 </button>
-                                <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+
+                                <button class="btn btn-soft-primary" type="button" onclick="">
                                     <a class="dropdown-item"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
                                 </button>
+                                </div>
                             </td>
                         </tr>
+                        {% endfor %}
                     </tbody>
-                </table>
-            </div>
-            <div>
+                  </table>
+                  </div>
+                <div>
             </div>
         </div>
     </div>

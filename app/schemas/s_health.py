@@ -1,7 +1,8 @@
 from typing import List, Optional
 from pydantic import BaseModel
-from pydantic import BaseModel, ValidationError
+# from pydantic import ValidationError
 from datetime import date
+
 
 class EmergencyContact(BaseModel):
     name: str
@@ -39,17 +40,7 @@ class HealthInformation(BaseModel):
 
 class HealthInformationAdd(HealthInformation):
 
-    emergency_contact: EmergencyContact
-    medical_history: MedicalHistory
-    vaccination_record: VaccinationRecord
-    current_medications: List[Medication] = []
-    recent_health_events: List[str] = []
-    health_habits: dict
-    routine_checkups: dict
-    health_insurance: dict
-    health_screenings: dict
-    mental_health: dict
-    reproductive_health: dict
-    weight_and_height: dict
-    dental_health: dict
-    vision_and_hearing: dict
+    emergency_contact: Optional[EmergencyContact]
+    medical_history: Optional[MedicalHistory]
+    vaccination_record: Optional[VaccinationRecord]
+    current_medications: Optional[Medication]

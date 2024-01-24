@@ -8,10 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ url_for('static', path='images/favicon.ico')}}">
-
-    <!-- plugin css -->
-    <!-- <link href="{{ url_for('static', path='libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" /> -->
 
     <!-- Layout config Js -->
     <script src="{{ url_for('static', path='js/layout.js')}}"></script>
@@ -41,21 +37,11 @@
     <div id="layout-wrapper">
       <!-- header -->
         {% include 'navbar.html' %}
-           
-        <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
-        <div cl
-        ="main-content">
-
-            <div class="page-content">
-        <!-- page-content -->
-             
         {% block content%}
         
         {% endblock content %}
-            </div>
-            <!-- End Page-content -->
+    </div>
+    
     <!-- footer -->
         {% include 'footer.html' %}
         <!-- end main content-->
@@ -68,22 +54,10 @@
 
     <!-- JAVASCRIPT -->
     <script src="{{ url_for('static', path='libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <!-- <script src="{{ url_for('static', path='libs/simplebar/simplebar.min.js')}}"></script> -->
-    <!-- <script src="{{ url_for('static', path='libs/node-waves/waves.min.js')}}"></script> -->
     <script src="{{ url_for('static', path='libs/feather-icons/feather.min.js')}}"></script>
     <script src="{{ url_for('static', path='js/pages/plugins/lord-icon-2.1.0.js')}}"></script>
     
-    <!-- apexcharts -->
-    <script src="{{ url_for('static', path='js/plugins.js')}}"></script>
-    <script src="{{ url_for('static', path='libs/apexcharts/apexcharts.min.js')}}"></script>
-    
-    <!-- Vector map-->
-    <!-- <script src="{{ url_for('static', path='libs/jsvectormap/js/jsvectormap.min.js')}}"></script> -->
-    <!-- <script src="{{ url_for('static', path='libs/jsvectormap/maps/world-merc.js')}}"></script> -->
-    
-    <!-- Dashboard init -->
-    <script src="{{ url_for('static', path='js/pages/dashboard-analytics.init.js')}}"></script>
-    
+    <!-- Dashboard init -->    
     <!-- App js -->
     <script src="{{ url_for('static', path='js/app.js')}}"></script>
 
@@ -100,7 +74,7 @@
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js" ></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js" ></script>
     <script src="https://cdn.datatables.net/fixedheader/3.4.0/js/dataTables.fixedHeader.min.js" ></script>
-    
+    <!--  -->
 </body>
 
 </html>
