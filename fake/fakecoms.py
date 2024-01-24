@@ -23,7 +23,7 @@ def generate_random_date_tz():
 
 
 # Generate 60 rows of fake data
-for i in range(1, 80):
+for i in range(1, 150):
     event_name = fake.word() + ' ' + fake.word()
     event_type = fake.word()
     event_date = generate_random_date().strftime('%Y-%m-%d %H:%M:%S')
