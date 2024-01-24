@@ -161,10 +161,4 @@ def read_all_health(db: db_dependency, id: int):
             detail="No informations yet."
             )
 
-    emergency_contact = health.emergency_contact
-    contact = db.query(s_health.EmergencyContact
-                       ).filter(
-                           s_health.EmergencyContact.id == emergency_contact
-                                ).first()
-    return {"information": health,
-            "contact": contact}
+    return {"information": health}
