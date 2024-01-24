@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 
 {% block content %}
+<br><br><br>
 <div class="container-fluid">
     <div class="row">
             <div class="col-lg-12">
@@ -18,71 +19,33 @@
                         <div class="file-manager-sidebar">
                             <div class="p-4 d-flex flex-column h-95">
                                 <div class="mb-3">
-                                    <button class="btn btn-success w-100" data-bs-target="#createProjectModal" data-bs-toggle="modal"><i class="ri-add-line align-bottom"></i> Add Plan</button>
+                                    <button class="btn btn-success w-100" data-bs-target="#createProjectModal" data-bs-toggle="modal"><i class="ri-add-line align-bottom">Add Plan</i></button>
                                 </div>
 
                                 <div class="px-4 mx-n4" data-simplebar style="height: calc(100vh - 468px);">
                                     <ul class="to-do-menu list-unstyled" id="projectlist-data">
                                         <li>
                                             <a data-bs-toggle="collapse" href="apps-todo.html#velzonAdmin" class="nav-link fs-14 active">Disaster Preparedness Plan</a>
-                                            <div class="collapse show" id="velzonAdmin">
+                                            <div class="collapse" id="velzonAdmin">
                                                 <ul class="mb-0 sub-menu list-unstyled ps-3 vstack gap-2 mb-2">
                                                     <li>
-                                                        <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-danger"></i> v1.4.0</a>
+                                                        <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-danger"></i> Barangay Disaster Risk Reduction and Management Plan and Committee
+                                                            Technical Guide</a>
                                                     </li>
                                                     <li>
                                                         <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-secondary"></i> v1.5.0</a>
                                                     </li>
-                                                    <li>
-                                                        <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-info"></i> v1.6.0</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-primary"></i> v1.7.0</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-warning"></i> v1.8.0</a>
-                                                    </li>
                                                 </ul>
                                             </div>
                                         </li>
                                         <li>
-                                            <a data-bs-toggle="collapse" href="apps-todo.html#projectManagement" class="nav-link fs-14">Project Management</a>
-                                            <div class="collapse" id="projectManagement">
-                                                <ul class="mb-0 sub-menu list-unstyled ps-3 vstack gap-2 mb-2">
-                                                    <li>
-                                                        <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-danger"></i> v2.1.0</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-secondary"></i> v2.2.0</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-info"></i> v2.3.0</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-primary"></i> v2.4.0</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a data-bs-toggle="collapse" href="apps-todo.html#skoteAdmin" class="nav-link fs-14">Emergency Contacts</a>
-                                            <div class="collapse" id="skoteAdmin">
-                                                <ul class="mb-0 sub-menu list-unstyled ps-3 vstack gap-2 mb-2">
-                                                    <li>
-                                                        <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-danger"></i> v4.1.0</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="apps-todo.html#!"><i class="ri-stop-mini-fill align-middle fs-15 text-secondary"></i> v4.2.0</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <button type="button" data-bs-toggle="collapse" href="apps-todo.html#skoteAdmin" class="btn btn-link nav-link fs-14">Emergency Contacts</button>
+
                                         </li>
                                         
                                     </ul>
                                 </div>
 
-
-                                
                             </div>
                         </div><!--end side content-->
                         <div class="file-manager-content w-100 p-4 pb-0">
@@ -96,27 +59,22 @@
                                     <h5 class="fw-semibold mb-0">Disaster Response Plan <span class="badge bg-primary align-bottom ms-2"></span></h5>
                                 </div>
 
-                                <div class="col-auto order-2 order-sm-3 ms-auto">
-                                    <div class="hstack gap-2">
-                                        
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="p-3 bg-light rounded mb-4">
                                 <div class="row g-2">
                                     <div class="col-lg-auto">
                                         <select class="form-control" data-choices data-choices-search-false name="choices-select-sortlist" id="choices-select-sortlist">
                                             <option value="">Sort</option>
-                                            <option value="By ID">By ID</option>
-                                            <option value="By Name">By Name</option>
+                                            <option value="By Plan Name">By ID</option>
+                                            <option value="By Priority">By Name</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-auto">
                                         <select class="form-control" data-choices data-choices-search-false name="choices-select-status" id="choices-select-status">
                                             <option value="">All Tasks</option>
                                             <option value="Completed">Completed</option>
-                                            <option value="Inprogress">Inprogress</option>
-                                            <option value="Pending">Pending</option>
+                                            <option value="Ongoing">In progress</option>
                                             <option value="New">New</option>
                                         </select>
                                     </div>
@@ -127,20 +85,24 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-auto">
-                                        <button class="btn btn-primary createTask" type="button" data-bs-toggle="modal" data-bs-target="#createTask">
-                                            <i class="ri-add-fill align-bottom"></i> Add Tasks
+                                        <button class="btn btn-primary" type="button">
+                                            Search <i class="ri-search-line align-bottom"></i>
                                         </button>
+                                        
                                     </div>
                                 </div>
                             </div>
 
                             
-                                <div class="todo-task" id="todo-task">
-                                    <div class="table-responsive">
-                                        <table class="table align-middle position-relative table-nowrap">
-                                            <thead class="table-active">
+                            <div class="row">
+                                <div class="col-lg-20">
+                                    <div class="card-header">
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                            <thead>
                                                 <tr>
-                                                    <th scope="col">Task Name</th>
+                                                    <th scope="col">Plan</th>
                                                     <th scope="col">Assigned</th>
                                                     <th scope="col">Due Date</th>
                                                     <th scope="col">Status</th>
@@ -148,7 +110,25 @@
                                                     <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
-
+                                        <tbody>
+                                            <tr>
+                                                <td>ddd</td>
+                                                <td>ddd</td>
+                                                <td>dd</td>
+                                                <td>ddd</td>
+                                                <td>ddd</td>
+                                                <td>
+                                                    <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal" value="">
+                                                        <a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
+                                                    </button>
+                                                    <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
+                                                        <a href="#" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
+                                                    </button>
+                                                    <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                        <a class="dropdown-item"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                             <tbody id="task-list"></tbody>
                                         </table>
                                     </div>
@@ -168,24 +148,43 @@
         
 
     <!-- Start Create Project Modal -->
-    <div class="modal fade zoomIn" id="createProjectModal" tabindex="-1" aria-labelledby="createProjectModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createProjectModal" tabindex="-1" aria-labelledby="createProjectModalLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header p-3 bg-success-subtle">
-                    <h5 class="modal-title" id="createProjectModalLabel">Create Project</h5>
+                    <h5 class="modal-title" id="createProjectModalLabel">Add Plan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" id="addProjectBtn-close" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form autocomplete="off" class="needs-validation createProject-form" novalidate>
                         <div class="mb-4">
-                            <label for="projectname-input" class="form-label">Project Name</label>
-                            <input type="text" class="form-control" id="projectname-input" autocomplete="off" placeholder="Enter project name" required>
-                            <div class="invalid-feedback">Please enter a project name</div>
-                            <input type="hidden" class="form-control" id="projectid-input" value="" placeholder="Enter project name">
+                            <label for="projectname-input" class="form-label">Plan Name</label>
+                            <input type="text" class="form-control" id="projectname-input">
+                            <input type="hidden" class="form-control" id="projectid-input" placeholder="Enter project name">
+                        </div>
+                        <div class="mb-4">
+                            <label for="projectname-input" class="form-label">Assigned</label>
+                            <input type="text" class="form-control" id="projectname-input">
+                            <input type="hidden" class="form-control" id="projectid-input" placeholder="Enter project name">
+                        </div>
+                        <div class="mb-4">
+                            <label for="projectname-input" class="form-label">Due Date</label>
+                            <input type="text" class="form-control" id="projectname-input">
+                            <input type="hidden" class="form-control" id="projectid-input" placeholder="Enter project name">
+                        </div>
+                        <div class="mb-4">
+                            <label for="projectname-input" class="form-label">Status</label>
+                            <input type="text" class="form-control" id="projectname-input">
+                            <input type="hidden" class="form-control" id="projectid-input" placeholder="Enter project name">
+                        </div>
+                        <div class="mb-4">
+                            <label for="projectname-input" class="form-label">Priority</label>
+                            <input type="text" class="form-control" id="projectname-input">
+                            <input type="hidden" class="form-control" id="projectid-input" placeholder="Enter project name">
                         </div>
                         <div class="hstack gap-2 justify-content-end">
-                            <button type="button" class="btn btn-ghost-success shadow-none" data-bs-dismiss="modal"><i class="ri-close-line align-bottom"></i> Close</button>
-                            <button type="submit" class="btn btn-primary" id="addNewProject">Add Project</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="ri-close-line align-bottom"></i> Close</button>
+                            <button type="submit" class="btn btn-primary" id="addNewProject">Add Plan</button>
                         </div>
                     </form>
                 </div>
@@ -195,10 +194,5 @@
     </div>
     <!-- End Create Project Modal -->
 
-  
-
-
-
 
 {% endblock %}
-                

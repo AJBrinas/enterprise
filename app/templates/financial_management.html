@@ -1,7 +1,6 @@
 {% extends 'index.html' %}
-{% load static %}
 {% block content %}
-
+<br><br><br>
                 <div class="container-fluid">
 
                     <!-- start page title -->
@@ -9,13 +8,6 @@
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                 <h4 class="mb-sm-0">Budget Tracking</h4>
-
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Financial Management</a></li>
-                                        <li class="breadcrumb-item active">Financial Lists</li>
-                                    </ol>
-                                </div>
 
                             </div>
                         </div>
@@ -29,24 +21,15 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1">
-                                            <p class="text-uppercase fw-medium text-muted mb-0">Recieved</p>
+                                            <p class="text-uppercase fw-medium text-muted mb-0">Budget for Year 2024</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-success fs-14 mb-0">
-                                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +89.24 %
-                                            </h5>
-                                        </div>
+
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" data-target="559.25">0</span>k</h4>
-                                            <span class="badge bg-warning me-1">2,258</span> <span class="text-muted"> Financial sent</span>
                                         </div>
-                                        <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-light rounded fs-3">
-                                                <i data-feather="file-text" class="text-success icon-dual-success"></i>
-                                            </span>
-                                        </div>
+
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
@@ -58,24 +41,14 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1">
-                                            <p class="text-uppercase fw-medium text-muted mb-0">Pending Financial</p>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-danger fs-14 mb-0">
-                                                <i class="ri-arrow-right-down-line fs-13 align-middle"></i> +8.09 %
-                                            </h5>
+                                            <p class="text-uppercase fw-medium text-muted mb-0">Total Revenue</p>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" data-target="409.66">0</span>k</h4>
-                                            <span class="badge bg-warning me-1">1,958</span> <span class="text-muted"> Pending</span>
                                         </div>
-                                        <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-light rounded fs-3">
-                                                <i data-feather="check-square" class="text-success icon-dual-success"></i>
-                                            </span>
-                                        </div>
+
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
@@ -87,24 +60,14 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1">
-                                            <p class="text-uppercase fw-medium text-muted mb-0">Cancelled Distribution</p>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-danger fs-14 mb-0">
-                                                <i class="ri-arrow-right-down-line fs-13 align-middle"></i> +9.01 %
-                                            </h5>
+                                            <p class="text-uppercase fw-medium text-muted mb-0">Expenditure</p>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" data-target="136.98">0</span>k</h4>
-                                            <span class="badge bg-warning me-1">338</span> <span class="text-muted"> Cancelled</span>
                                         </div>
-                                        <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-light rounded fs-3">
-                                                <i data-feather="clock" class="text-success icon-dual-success"></i>
-                                            </span>
-                                        </div>
+
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
@@ -116,24 +79,15 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1">
-                                            <p class="text-uppercase fw-medium text-muted mb-0">Ongoing Financial</p>
+                                            <p class="text-uppercase fw-medium text-muted mb-0">Growth Rate</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-success fs-14 mb-0">
-                                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +7.55 %
-                                            </h5>
-                                        </div>
+
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" data-target="84.20">0</span>k</h4>
-                                            <span class="badge bg-warning me-1">502</span> <span class="text-muted">Ongoing</span>
                                         </div>
-                                        <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-light rounded fs-3">
-                                                <i data-feather="x-octagon" class="text-success icon-dual-success"></i>
-                                            </span>
-                                        </div>
+
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
@@ -145,7 +99,7 @@
                             <div class="card" id="invoiceList">
                                 <div class="card-header border-0">
                                     <div class="d-flex align-items-center">
-                                        <h5 class="card-title mb-0 flex-grow-1">Lists</h5>
+                                        <h5 class="card-title mb-0 flex-grow-1">Records</h5>
                                         <div class="flex-shrink-0">
                                             <div class="d-flex gap-2 flex-wrap">
                                             	<button class="btn btn-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
@@ -203,13 +157,12 @@
                                                                 <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                                             </div>
                                                         </th>
-                                                        <th class="sort text-uppercase" data-sort="invoice_id">ID</th>
+                                                        <th class="sort text-uppercase" data-sort="invoice_id">Transaction ID</th>
                                                         <th class="sort text-uppercase" data-sort="customer_name">Name</th>
                                                         <th class="sort text-uppercase" data-sort="email">Email</th>
                                                         <th class="sort text-uppercase" data-sort="country">Address</th>
                                                         <th class="sort text-uppercase" data-sort="date">Date</th>
                                                         <th class="sort text-uppercase" data-sort="invoice_amount">Amount</th>
-                                                        <th class="sort text-uppercase" data-sort="status">Status</th>
                                                         <th class="sort text-uppercase" data-sort="action">Action</th>
                                                     </tr>
                                                     <tr>
@@ -224,13 +177,11 @@
                                                         <td> New York City</td>
                                                         <td>January 16, 2022</td>
                                                         <td>$ 20000 </td>
-                                                        <td><span class="badge bg-danger">cancelled</span></td>
                                                         <td>
                                                             <button class="btn btn-soft-secondary" type="button" aria-expanded="false">
                                                                 <a href="tables-datatables.html#!" class="dropdown-item"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
                                                             </button>
-                                                        </div>
-                                                    </td>
+                                                        </td>
                                                     </tr>
 
                                                 </thead>
@@ -251,12 +202,4 @@
          
 
 
-                {% block css %}
-                {% endblock %}
-                
-                {% block js %}
-                                
-                {% endblock %}
-                
-                
-                {% endblock %}
+{% endblock %}
