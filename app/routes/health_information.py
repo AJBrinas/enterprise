@@ -116,8 +116,8 @@ def read_contacts(db: db_dependency, limit: int = 10):
 
 # Get all data without html
 @router.get("/infos", response_class=ORJSONResponse)
-def read_health(request: Request, db: db_dependency, limit: int = 20):
-    health = db.query(s_health.HealthInformation).limit(limit).all()
+def read_health(request: Request, db: db_dependency):
+    health = db.query(s_health.HealthInformation).all()
 
     if not health:
         raise HTTPException(
