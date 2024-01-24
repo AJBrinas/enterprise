@@ -1,7 +1,11 @@
-.square{
-    margin-top: 2%;
+
+
+.file-manager-sidebar {
+    /* Adjust the margin-bottom to set the desired space between the sidebar and h4 */
+    margin-bottom: 20px; 
 }
-h4{
-    margin-top: -1%;
-    margin-left: 6%;
+
+h4 {
+    /* Optionally, adjust margin-top to set the space above the h4 */
+    margin-top: 20px;
 }
