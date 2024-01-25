@@ -10,6 +10,7 @@ from fastapi.encoders import jsonable_encoder
 import datetime
 from sqlalchemy import func
 from ..auth.oauth2 import get_current_user
+
 router = APIRouter(prefix="/health-information",
                    tags=["Health Information"])
 
@@ -124,3 +125,11 @@ def read_all_health(db: db_dependency, id: int):
     return {"information": health,
             "contact": contact}
 
+
+@router.get("/gender-all")
+async def gender_all(db: db_dependency):
+    genders = db.query(hi.gender,
+                       func.count(hi.gender).label('total')
+                       ).group_by(hi.gender).all()
+    result = [{"gender": gender, "total": total} for gender, total in genders]
+    return result
