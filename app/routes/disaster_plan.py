@@ -15,7 +15,7 @@ temp = Jinja2Templates(directory="app/templates")
 
 @router.get("/plan")
 def root(request: Request):
-    return temp.TemplateResponse("disaster_plan.html",
+    return temp.TemplateResponse("disaster_response.html",
                                  {"request": request})
 
 
