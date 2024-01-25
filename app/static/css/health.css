@@ -1,15 +1,3 @@
-
-
-.file-manager-sidebar {
-    /* Adjust the margin-bottom to set the desired space between the sidebar and h4 */
-    margin-bottom: 20px; 
-}
-
-h4 {
-    /* Optionally, adjust margin-top to set the space above the h4 */
-    margin-top: 20px;
-}
-
 .wrapper {
     margin-top: 5vh;
   }
@@ -98,7 +86,7 @@ h4 {
     td:nth-of-type(2):before {
       content: "Position";
     }
-  
+
     td:nth-of-type(3):before {
       content: "Office";
     }
