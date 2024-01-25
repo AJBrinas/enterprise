@@ -21,5 +21,5 @@ def root(request: Request):
 
 @router.get("/contacts")
 def contact(request: Request):
-    return temp.TemplateResponse("disaster_plan_contact.html",
+    return temp.TemplateResponse("disaster_emergency_hotlines.html",
                                  {"request": request})

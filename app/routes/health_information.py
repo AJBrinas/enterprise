@@ -105,7 +105,6 @@ def get_disaster(request: Request):
                                  {'request': request})
 
 
-
 # Get Health data without Contact Information with html
 @router.get("/infos/all/{id}")
 def read_all_health(db: db_dependency, id: int):
