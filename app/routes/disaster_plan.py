@@ -15,11 +15,11 @@ temp = Jinja2Templates(directory="app/templates")
 
 @router.get("/plan")
 def root(request: Request):
-    return temp.TemplateResponse("disaster_plan.html",
+    return temp.TemplateResponse("disaster_response.html",
                                  {"request": request})
 
 
 @router.get("/contacts")
 def contact(request: Request):
-    return temp.TemplateResponse("disaster_plan_contact.html",
+    return temp.TemplateResponse("disaster_emergency_hotlines.html",
                                  {"request": request})
