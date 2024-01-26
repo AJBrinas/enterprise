@@ -128,7 +128,7 @@
                                     <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
                                 </div>
                             </th>
-                            <th data-ordering="false">ID</th>
+                            <th data-ordering="false">#</th>
                             <th data-ordering="false">Name</th>
                             <th>Age</th>
                             <th>Address</th>
@@ -150,9 +150,7 @@
                             <td>{{i.date_of_birth}}</td>
                             <td>{{i.address}}</td>
                             <td>
-                                <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal" value="{{i.id}}">
-                                    <a href="#" class="dropdown-item"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
-                                </button>
+                                
                                 <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
                                     <a href="#" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
                                 </button>
@@ -233,8 +231,8 @@
     </div>
 </div>
 
-<!-- Edit Modal -->
-<div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+
+<!-- <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -317,7 +315,7 @@
                     
                     </div>
 
-                    <!-- Submit button to update information -->
+
                     <div class="modal-footer d-flex justify-content-end">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary" id="confirmEditBtn">Save Changes</button>
@@ -334,7 +332,7 @@
             dateFormat: "Y-m-d",  // Set your desired date format
         });
     });
-</script>
+</script> -->
 
 <!-- Delete Modal -->
 <div class="modal fade" id="staticBackdrop" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -439,21 +437,21 @@
 });
 
 
-      $('#modalButton').click(function () {
+//       $('#modalButton').click(function () {
       
-         // getting the value of the input fields
-         var product = $('#product').val();
-         var quantity = $('#quantity').val();
-         var price = $('#price').val();
-         var total = $('#total').val();
-         var htmlStr = '<p> Product: ' + product + '</p>' +
-         '<p> Quantity: ' + quantity + '</p>' +
-         '<p> Price: ' + price + '</p>' +
-         '<p> Total: ' + total + '</p>';
+//          // getting the value of the input fields
+//          var product = $('#product').val();
+//          var quantity = $('#quantity').val();
+//          var price = $('#price').val();
+//          var total = $('#total').val();
+//          var htmlStr = '<p> Product: ' + product + '</p>' +
+//          '<p> Quantity: ' + quantity + '</p>' +
+//          '<p> Price: ' + price + '</p>' +
+//          '<p> Total: ' + total + '</p>';
          
-         // adding the data to the modal
-         $('.modal-body').html(htmlStr);
-      });
-   </script>
+//          // adding the data to the modal
+//          $('.modal-body').html(htmlStr);
+//       });
+//    </script>
 </body>
 {% endblock content %}

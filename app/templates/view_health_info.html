@@ -1,0 +1,86 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+<br><br>
+<div class="container mt-5">
+    <h3 class="mb-4">Resident Health Information</h3>
+    <div class="row">
+        <!-- Personal Information Card -->
+        <div class="col-md-6">
+            <div class="card mb-4" style="height: 97%;" >
+                <div class="card-header">
+                    Personal Information
+                </div>
+                <div class="card-body">
+                    <div class="logo-container d-flex justify-content-center">
+                        <img alt="User Photo" src="{{ url_for('static', path='img/OIP.jpg')}}" class ="logo" >
+                    </div>
+                    <p>Name:</p>
+                    <p>Date of Birth:</p>
+                    <p>Gender</p>
+                    <p>Age:</p>
+                    <p>Address:</p>
+                    <p>Contact Number:</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vaccine Details Card -->
+        <div class="col-md-6">
+            <div class="card mb-4" style="width: 800px;">
+                <div class="card-header">
+                    Vaccination Details
+                </div>
+                <div class="card-body">
+                    <p>Vaccine Name:</p>
+                    <p>Date Received:</p>
+                    <p>Dose:</p>
+                </div>
+            </div>
+
+            <!-- Medical History Card -->
+            <div class="card mb-4" style="width: 800px;">
+                <div class="card-header">
+                    Medical History
+                </div>
+                <div class="card-body">
+                    <p>Illness:</p>
+                    <p>Date of Diagnose:</p>
+                    <p>Medicine:</p>
+                    <p>Dose:</p>
+                    <p>Frequency:</p>
+                </div>
+            </div>
+
+            <!-- Emergency Contacts Card -->
+            <div class="card" style="width: 800px;">
+                <div class="card-header">
+                    Emergency Contacts
+                </div>
+                <div class="card-body">
+                    <p>Contact Name:</p>
+                    <p>Relationship</p>
+                    <p>Contact Number:</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap 5 JS (optional) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+{% endblock %}
