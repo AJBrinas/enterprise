@@ -47,7 +47,7 @@ def get_current_user(token: str = Depends(oauth2_scheme),
                      db: Session = Depends(get_db)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could Not Validate Credentials",
+        detail="You are not Signed-In.",
         headers={"WWW-Authenticate:": "Bearer"})
 
     token = verify_access_token(token, credentials_exception)

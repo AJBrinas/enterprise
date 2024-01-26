@@ -26,6 +26,7 @@
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 </head>
 
+
 <body>
 <div class="main-content">
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
@@ -104,8 +105,8 @@
         </div>
     </div>
 </div>
-
 <div><p></p></div>
+
 <div class="container-fluid">
     <!-- start page title -->
     <div class="row">
@@ -153,9 +154,10 @@
                                 
                                 <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
                                     <a href="#" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
+
                                 </button>
-                                <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <a class="dropdown-item"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
+                                <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="{{i.id}}">
+                                    <a class="dropdown-item" id="healthDelete"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
                                 </button>
                             </td>
                             
@@ -205,7 +207,7 @@
                         <p><strong>Frequency:</strong></p>
                     </div>
                     <div class="col-md-6">
-                        <br><br>
+                        <br>{{health.full_name}}<br>
                         <p></p>
                         <p>None</p>
                         <p></p>
@@ -239,12 +241,12 @@
                 <h5 class="modal-title" id="editModalLabel">Edit Resident Health Information</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="view-health-info">
                 <form>
                     <div class="mb-3">
                         <p><strong>PERSONAL DETAILS</strong></p>
                         <label for="editName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="editName">
+                        <input type="text" class="form-control" id="editName" name="name">
                         <br>
                         <label for="editName" class="form-label">Last Name</label>
                         <input type="text" class="form-control" id="editName">
@@ -358,10 +360,10 @@
     document.addEventListener('DOMContentLoaded', function () {
         // Dummy data for the donut chart
         var donutChartData = {
-            labels: ['Label 1', 'Label 2'],
+            labels: ['Male', 'Female'],
             datasets: [{
-                data: [50, 50], // Example data
-                backgroundColor: ['--vz-primary', '--vz-light'],
+                data: [554, 653], // Example data
+                backgroundColor: ['Blue', 'Red'],
             }]
         };
 
@@ -438,6 +440,7 @@
 
 
 //       $('#modalButton').click(function () {
+
       
 //          // getting the value of the input fields
 //          var product = $('#product').val();
@@ -449,9 +452,41 @@
 //          '<p> Price: ' + price + '</p>' +
 //          '<p> Total: ' + total + '</p>';
          
+
+
 //          // adding the data to the modal
 //          $('.modal-body').html(htmlStr);
 //       });
 //    </script>
 </body>
+
+<!--          // adding the data to the modal
+         $('.modal-body').html(htmlStr);
+
+         // adding the data to the modal
+         $('#view-health-info').html(htmlStr);
+
+      });
+   </script>  -->
+<!-- 
+   <script>
+    $(document).ready(function () {
+        // Make an Ajax request to the server
+        var $data = $('#index-result')
+        $.ajax({
+            url: '/health-information/info/vac/3',
+            type: 'GET',
+            dataType: 'json',  // Specify that you expect JSON data
+            success: function (data) {
+                $.each(data, function(i, user){
+                    $data.append('<li>'+ data.full_name +'</li>');
+                    $data.append('<li>'+ data.vaccines +'</li>');
+                });
+            },
+            error: function (error) {
+                console.error('Error:', error);
+            }
+        });
+    }); -->
+<!-- </script> -->
 {% endblock content %}
