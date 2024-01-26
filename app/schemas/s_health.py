@@ -31,7 +31,7 @@ class VaccinationRecord(BaseModel):
 
 
 class Medication(BaseModel):
-    name: str
+    medicibne: str
     dosage: str
     frequency: str
 
@@ -55,7 +55,8 @@ class HealthInformationAdd(HealthInformation):
 # For Creating Data
 class AddInfo(Medication):
     illness: str
-    pass
+    diagnosed: date
+    person_info: int
 
 
 # For Updating Data

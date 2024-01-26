@@ -100,9 +100,9 @@
     <!-- end page title -->
 
 
-     <div class="card-body" style="height: 600px; overflow: auto;">
+     <div class="card-body" style="height: 750px; overflow: auto;">
         <div class="table-responsive">
-                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%;">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 10px;">
@@ -133,8 +133,8 @@
                             <td>{{i.address}}</td>
                             <td>
                                 
-                                <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
-                                    <a href="#" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
+                                <button class="btn btn-soft-success" type="button" data-bs-toggle="modal">
+                                    <a href="view/{{i.id}}" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
 
                                 </button>
                                 <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="{{i.id}}">
@@ -157,16 +157,16 @@
 <!-- container-fluid -->
 
 <!-- View Modal -->
-<div class="modal fade" id="viewModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="viewModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="viewModalLabel">Resident Health Information</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"> -->
                 <!-- Personal Details Column -->
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-6 border-end">
                         <p><strong>PERSONAL DETAILS</strong></p>
                         <p><strong>Name:</strong></p>
@@ -212,7 +212,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <!-- <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -339,27 +339,60 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Dummy data for the donut chart
-        var donutChartData = {
-            labels: ['Male', 'Female'],
+        // Dummy data for the donut chart   
+        var donutChartData;
+
+    function fetchData() {
+        fetch('/health-information/gender-all')  // Replace with the actual endpoint URL
+            .then(response => response.json())
+            .then(data => {
+                updateDonutChart(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
+
+    function updateDonutChart(data) {
+        var labels = data.map(item => item.gender);
+        var counts = data.map(item => item.total);
+
+        // Update the global variable
+        donutChartData = {
+            labels: labels,
             datasets: [{
-                data: [554, 653], // Example data
+                data: counts,
                 backgroundColor: ['Blue', 'Red'],
             }]
         };
 
-        // Create the donut chart
+        // Create or update the donut chart
         var ctxDonut = document.getElementById('donutChart').getContext('2d');
-        var donutChart = new Chart(ctxDonut, {
-            type: 'doughnut',
-            data: donutChartData,
-            options: {
-                cutout: '50%', // Adjust this value to control the size of the hole in the center
-                responsive: true,
-                maintainAspectRatio: false,
-            }
-        });
-    });
+        if (donutChart) {
+            // If the chart already exists, update its data
+            donutChart.data = donutChartData;
+            donutChart.update();
+        } else {
+            // If the chart doesn't exist, create a new one
+            donutChart = new Chart(ctxDonut, {
+                type: 'doughnut',
+                data: donutChartData,
+                options: {
+                    cutout: '50%',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+        }
+    }
+
+    // Call the fetchData function when the page loads
+    fetchData();
+
+    // Set up an interval to fetch data periodically
+    setInterval(fetchData, 20000); // Fetch data every 5 seconds
+});
+
     document.addEventListener('DOMContentLoaded', function () {
         // Dummy data for the line chart
         var lineChartData = {
@@ -418,7 +451,6 @@
     });
     
 });
-
 
 //       $('#modalButton').click(function () {
 
