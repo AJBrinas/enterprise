@@ -1,6 +1,16 @@
 {% extends 'index.html' %}
 
 {% block content %}
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="...">
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="..."></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="..."></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="..."></script>
+
+
 <br><br><br>
 <div class="container-fluid">
     <div class="row">
@@ -24,24 +34,35 @@
 
                                 <div class="px-4 mx-n4" data-simplebar style="height: calc(100vh - 468px);">
                                     <ul class="to-do-menu list-unstyled" id="projectlist-data">
-                                        <li>
-                                            <a data-bs-toggle="collapse" href="apps-todo.html#velzonAdmin" class="nav-link fs-14 active">Disaster Preparedness Plan</a>
+                                        <li class="to-do-menu" style="width: 270px;">
+                                            <a data-bs-toggle="collapse" href="apps-todo.html#velzonAdmin" class="nav-link fs-16 active"  aria-hidden="true">Disaster Preparedness Plan</a>
                                             <div class="collapse" id="velzonAdmin">
                                                 <ul class="mb-0 sub-menu list-unstyled ps-3 vstack gap-2 mb-2">
                                                     <li>
-                                                        <a href="#" onclick="redirectFunction();"><i class="ri-stop-mini-fill align-middle fs-15 text-danger"></i> Barangay Disaster Risk Reduction and Management Plan and Committee
+                                                        <a href="#" onclick="redirectFunction1();"><i class="ri-stop-mini-fill align-middle fs-15 text-danger"></i>Barangay Disaster Risk<br>Reduction and Management<br>Plan and Committee
                                                             Technical Guide</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" onclick="redirectFunction();"><i class="ri-stop-mini-fill align-middle fs-15 text-secondary"></i> v1.5.0</a>
+                                                        <a href="#" onclick="redirectFunction2();"><i class="ri-stop-mini-fill align-middle fs-15 text-secondary"></i>Disaster Preparedness and<br>Local Governance 
+                                                            in the<br>Philippines</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" onclick="redirectFunction3();"><i class="ri-stop-mini-fill align-middle fs-15 text-danger"></i>DSWD National Disaster<br>Response Plan </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" onclick="redirectFunction4();"><i class="ri-stop-mini-fill align-middle fs-15 text-secondary"></i>Barangay Talayan Contingency<br>Plan</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" onclick="redirectFunction5();"><i class="ri-stop-mini-fill align-middle fs-15 text-danger"></i>Barangay Bambang Disaster<br>Risk Reductionand Management Planning (BDRRMP) Workshop</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li>
-                                            <button type="button" data-bs-toggle="collapse" href="apps-todo.html#skoteAdmin" class="btn btn-link nav-link fs-14">Emergency Contacts</button>
 
-                                        </li>
+                                            <button type="button" class="btn btn-danger" onclick="redirectToOtherPage()" style="width: 250px; height: 40px;" data-toggle="modal" data-target="#emergencyContactsModal">
+                                                Emergency Contacts
+                                            </button>
+
                                         
                                     </ul>
                                 </div>
@@ -72,7 +93,7 @@
                                     </div>
                                     <div class="col-lg-auto">
                                         <select class="form-control" data-choices data-choices-search-false name="choices-select-status" id="choices-select-status">
-                                            <option value="">All Tasks</option>
+                                            <option value="">All Plans</option>
                                             <option value="Completed">Completed</option>
                                             <option value="Ongoing">In progress</option>
                                             <option value="New">New</option>
@@ -142,8 +163,6 @@
                         </div>
                     </div>
                 </div>  
-                <!-- container-fluid -->
-          
             </div>
         
 
@@ -192,10 +211,31 @@
         </div>
         <!-- end modal-dialog -->
     </div>
-    <!-- End Create Project Modal -->
+
+
     <script>
-        function redirectFunction() {
+        function redirectFunction1() {
             window.location.href = "https://alertandready.ph/qatportal/sites/default/files/B.%20Technical%20Guide%20Notes_English.pdf";
+        }
+
+        function redirectFunction2() {
+        window.location.href = "https://pidswebs.pids.gov.ph/CDN/PUBLICATIONS/pidsdps1852.pdf";
+        }
+
+        function redirectFunction3() {
+            window.location.href = "https://dreamb.dswd.gov.ph/wp-content/uploads/2022/06/Consequence-Management-for-Terrorism-related-Incidents.pdf";
+        }
+
+        function redirectFunction4() {
+        window.location.href = "https://www.pdrf.org/project-konek/wp-content/uploads/sites/2/2022/07/2.-Talayan_CP_Final.Draft_7June22.pdf";
+        }
+
+        function redirectFunction5() {
+        window.location.href = "https://www.slideshare.net/AKKAPPPWDBambang/bdrrmp-worskhop-pasig-day-1";
+        }
+
+        function redirectToOtherPage() {
+            window.location.href = "disaster_emergency_hotlines.html";
         }
     </script>
 

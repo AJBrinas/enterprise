@@ -6,7 +6,6 @@
 	box-sizing: border-box;
 }
 
-
 ul{
 	list-style: none;
 }
@@ -25,7 +24,6 @@ ul{
   position:relative;
 }
 .footer {
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;

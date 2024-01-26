@@ -5,19 +5,29 @@
 {% endblock title %}
     
 {% block content %}
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- Flatpickr library -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<!-- Data Table JS -->
-<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Health Records</title>
+    <!-- Include Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyU8HihC8L/CGggpHNKh/kZMY5c9VR6fc" crossorigin="anonymous">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Flatpickr library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!-- Data Table JS -->
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+</head>
 
 
+<body>
 <div class="main-content">
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
         <div class="container-fluid">
@@ -96,7 +106,7 @@
     </div>
 </div>
 <div><p></p></div>
-<div id="index-result"></div>
+
 <div class="container-fluid">
     <!-- start page title -->
     <div class="row">
@@ -108,11 +118,9 @@
     </div>
     <!-- end page title -->
 
-    <div class="row">
-        <div class="col-lg-20">
-            <div class="card-header">
-            </div>
-            <div class="card-body">
+
+     <div class="card-body" style="height: 600px; overflow: auto;">
+        <div class="table-responsive">
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>
                         <tr>
@@ -121,7 +129,7 @@
                                     <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
                                 </div>
                             </th>
-                            <th data-ordering="false">ID</th>
+                            <th data-ordering="false">#</th>
                             <th data-ordering="false">Name</th>
                             <th>Age</th>
                             <th>Address</th>
@@ -143,24 +151,24 @@
                             <td>{{i.date_of_birth}}</td>
                             <td>{{i.address}}</td>
                             <td>
-                                <button class="btn btn-soft-secondary" type="button" data-bs-toggle="modal" data-bs-target="#editModal" value="{{i.id}}">
-                                    <a href="#" class="dropdown-item" id="healthEdit"><i class="ri-pencil-fill align-bottom me-2 text-muted" ></i> Edit</a>
-                                </button>
-                                <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal" value="{{i.id}}">
-                                    <a href="#" class="dropdown-item" id="healthView"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
+                                
+                                <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
+                                    <a href="#" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
+
                                 </button>
                                 <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="{{i.id}}">
                                     <a class="dropdown-item" id="healthDelete"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
                                 </button>
                             </td>
+                            
                         </tr>
                         
                         {% endfor %}
 
                     </tbody>
+                    
                 </table>
-            </div>
-            <div>
+                
             </div>
         </div>
     </div>
@@ -225,8 +233,8 @@
     </div>
 </div>
 
-<!-- Edit Modal -->
-<div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+
+<!-- <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -309,7 +317,7 @@
                     
                     </div>
 
-                    <!-- Submit button to update information -->
+
                     <div class="modal-footer d-flex justify-content-end">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary" id="confirmEditBtn">Save Changes</button>
@@ -326,7 +334,7 @@
             dateFormat: "Y-m-d",  // Set your desired date format
         });
     });
-</script>
+</script> -->
 
 <!-- Delete Modal -->
 <div class="modal fade" id="staticBackdrop" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -403,17 +411,18 @@
             },
         });
     });
-    
+
     $(document).ready(function() {
     $('#example').DataTable({
+        responsive: true,
         // Disable sorting on the last column
         "columnDefs": [
             { "orderable": false, "targets": 5 }
         ],
         language: {
             'paginate': {
-                'previous': '<span class="fa fa-chevron-left"></span>',
-                'next': '<span class="fa fa-chevron-right"></span>'
+                'previous': '<span class="fa fa-chevron-left"><</span>',
+                'next': '<span class="fa fa-chevron-right">></span>'
             },
             // Customize the number of elements to be displayed
             "lengthMenu": 'Display <select class="form-control input-sm">'+
@@ -426,28 +435,40 @@
             '</select> results'
         },
     });
+    
 });
 
-</script>
 
-  <!-- <script>
-      $('#modalButton').click(function () {
+//       $('#modalButton').click(function () {
+
       
-         // getting the value of the input fields
-         var product = $('#product').val();
-         var quantity = $('#quantity').val();
-         var price = $('#price').val();
-         var total = $('#total').val();
-         var htmlStr = '<p> Product: ' + product + '</p>' +
-         '<p> Quantity: ' + quantity + '</p>' +
-         '<p> Price: ' + price + '</p>' +
-         '<p> Total: ' + total + '</p>';
+//          // getting the value of the input fields
+//          var product = $('#product').val();
+//          var quantity = $('#quantity').val();
+//          var price = $('#price').val();
+//          var total = $('#total').val();
+//          var htmlStr = '<p> Product: ' + product + '</p>' +
+//          '<p> Quantity: ' + quantity + '</p>' +
+//          '<p> Price: ' + price + '</p>' +
+//          '<p> Total: ' + total + '</p>';
          
+
+
+//          // adding the data to the modal
+//          $('.modal-body').html(htmlStr);
+//       });
+//    </script>
+</body>
+
+<!--          // adding the data to the modal
+         $('.modal-body').html(htmlStr);
+
          // adding the data to the modal
          $('#view-health-info').html(htmlStr);
-      });
-   </script> -->
 
+      });
+   </script>  -->
+<!-- 
    <script>
     $(document).ready(function () {
         // Make an Ajax request to the server
@@ -466,6 +487,6 @@
                 console.error('Error:', error);
             }
         });
-    });
-</script>
+    }); -->
+<!-- </script> -->
 {% endblock content %}
