@@ -60,3 +60,10 @@ def login(db: Session = Depends(get_db), user_credentials: OAuth2PasswordRequest
 @router.get("/login")
 def log(request: Request):
     return temp.TemplateResponse('login.html', {'request': request})
+
+
+@router.post("/login/au")
+def logs(request: Request, username: str = Form(), password: str = Form()):
+    user = username
+    passw = password
+    return temp.TemplateResponse('health_records.html', {'request': request, 'user': user, 'pass': passw})
