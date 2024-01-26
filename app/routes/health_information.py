@@ -81,6 +81,10 @@ def read_contacts(db: db_dependency, limit: int = 10):
 # Get all data with html
 @router.get("/infos", response_model=schema.HealthTable)
 def read_health(request: Request, db: db_dependency):
+    
+    if not get_current_user:
+        raise HTTPException(RedirectResponse(url='/'),
+                            status_code=status.HTTP_401_UNAUTHORIZED)
     health = db.query(hi).all()
     if not health:
         raise HTTPException(

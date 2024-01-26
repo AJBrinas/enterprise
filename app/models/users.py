@@ -22,4 +22,4 @@ class User(Base):
     updated_by = Column(String, nullable=True)
     deleted_at = Column(TIMESTAMP(timezone=True), nullable=True)
     deleted_by = Column(String, nullable=True)
-    is_deleted = Column(Boolean, nullable=False, server_default=text('false'))
+    # is_deleted = Column(Boolean, nullable=False, server_default=text('false'))

@@ -117,34 +117,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        
-                        {% for i in health %}
-                            
-                        <tr>
-                            <th scope="row">
-                                <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
-                                </div>
-                            </th>
-                            <td></td>
-                            <td>{{i.full_name}}</td>
-                            <td>{{i.date_of_birth}}</td>
-                            <td>{{i.address}}</td>
-                            <td>
-                                
-                                <button class="btn btn-soft-success" type="button" data-bs-toggle="modal">
-                                    <a href="view/{{i.id}}" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
-
-                                </button>
-                                <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="{{i.id}}">
-                                    <a class="dropdown-item" id="healthDelete"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a>
-                                </button>
-                            </td>
-                            
-                        </tr>
-                        
-                        {% endfor %}
+                    <tbody id="resultBody">
 
                     </tbody>
                     
@@ -336,6 +309,38 @@
     </div>
 </div>
 
+
+    <script>
+        // Use the modern fetch API
+        fetch('https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/residentprofiles/get')
+            .then(response => response.json())
+            .then(data => {
+                // Use the response data
+                displayData(data.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+            
+        function displayData(residents) {
+            // Create HTML for the table
+            var resultHtml = '';
+
+            residents.forEach((resident, index) => {
+                resultHtml += '<tr>';
+                resultHtml += '<th scope="row"> <div class="form-check"><input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1"></div></th>';
+                resultHtml += '<td>' + (index + 1)+ '</td>';
+                resultHtml += '<td>' + resident.first_name + '</td>';
+                resultHtml += '<td>' + resident.age + '</td>';
+                resultHtml += '<td>' + resident.birthplace + '</td>';
+                resultHtml += '<td><button class="btn btn-soft-success" type="button" data-bs-toggle="modal"><a href="view/'+ (index + 1) +'?id='+ resident.id +'&num='+ (index + 1) +'" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a> </button> <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="'+ (index + 1) +'"><a class="dropdown-item" id="healthDelete"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></button></td>';
+                resultHtml += '</tr>';
+            });
+
+            // Display the HTML in the table body
+            document.getElementById('resultBody').innerHTML = resultHtml;
+        }
+    </script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

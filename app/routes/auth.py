@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Form
+from fastapi import APIRouter, Depends, Form, Cookie, Header
 from fastapi import status, HTTPException, Request
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
@@ -9,6 +9,7 @@ from app.schemas import user_schema as us
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
 
+
 router = APIRouter(tags=['Authentication'])
 
 temp = Jinja2Templates(directory="app/templates")
@@ -17,7 +18,7 @@ temp = Jinja2Templates(directory="app/templates")
 @router.post('/verify', status_code=status.HTTP_202_ACCEPTED)
 def verify(user_credentials: OAuth2PasswordRequestForm = Depends(),
           db: Session = Depends(get_db)):
-
+    print(user_credentials)
     user = db.query(u.User).filter(
         u.User.email == user_credentials.username).first()
 
@@ -35,7 +36,7 @@ def verify(user_credentials: OAuth2PasswordRequestForm = Depends(),
 
 
 @router.post('/login/auth', status_code=status.HTTP_100_CONTINUE)
-def login(db: Session = Depends(get_db), user_credentials: OAuth2PasswordRequestForm = Depends()
+def login(request: Request, db: Session = Depends(get_db), user_credentials: OAuth2PasswordRequestForm = Depends()
           , username: str = Form(...), password: str = Form(...)):
     user_credentials.username = username
     user_credentials.password = password
@@ -52,9 +53,9 @@ def login(db: Session = Depends(get_db), user_credentials: OAuth2PasswordRequest
                             detail="Invalid Credentials!")
 
     access_token = oauth2.create_access_token(data={"user_id": user.id})
-    for_url = f"/health-information/infos?access_token={access_token}&bearer_token=bearer"
-    response = RedirectResponse(url=for_url)
-    return response
+    return temp.TemplateResponse('health_record.html',
+                                 {'request': request,
+                                  "access_token": access_token, "token_type": "bearer"})
 
 
 @router.get("/")
