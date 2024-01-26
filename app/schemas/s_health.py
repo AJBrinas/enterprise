@@ -3,7 +3,7 @@ from pydantic import BaseModel
 # from pydantic import ValidationError
 from datetime import date
 
-
+# For showing Data
 class HealthTable(BaseModel):
     id: int
     full_name: str
@@ -35,14 +35,12 @@ class Medication(BaseModel):
     dosage: str
     frequency: str
 
-
 class HealthInformation(BaseModel):
     full_name: Optional[str]
     date_of_birth: Optional[str]
     gender: Optional[str]
     address: Optional[str]
     contact_number: Optional[str]
-    barangay_id: Optional[str]
 
 
 class HealthInformationAdd(HealthInformation):
@@ -51,3 +49,20 @@ class HealthInformationAdd(HealthInformation):
     medical_history: Optional[MedicalHistory]
     vaccination_record: Optional[VaccinationRecord]
     current_medications: Optional[Medication]
+
+
+# Medication
+# For Creating Data
+class AddInfo(Medication):
+    illness: str
+    pass
+
+
+# For Updating Data
+class UpdateInfo(HealthInformation):
+    pass
+
+
+# For Viewing Data
+class ViewInfo(BaseModel):
+    pass
