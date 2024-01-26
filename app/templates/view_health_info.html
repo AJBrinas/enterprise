@@ -40,9 +40,34 @@
                     Vaccination Details
                 </div>
                 <div class="card-body">
-                    <p>Vaccine Name:</p>
-                    <p>Date Received:</p>
-                    <p>Dose:</p>
+                    {% if vaccine|length > 0 %}
+                    <table id="vaccineTable" class="display table-striped">
+                        <thead>
+                        <tr>
+                            <th>Vaccine Name</th>
+                            <th>Date Received</th>
+                            <th>Dose</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in vaccine %}
+                        <tr>
+                            <td align="left"><p><b>{{i.vaccine}}</b></p></td>
+                            <td><p>{{i.vaccinated_date}}</p></td>
+                            <td><p>{{i.dose}}</p></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                        </table>
+                    {% elif vaccine|length == 0 %}
+                        <p>Vaccine Name: <b>{{vaccine.vaccine}}</b></p>
+                        <p>Date Received: <b>{{vaccine.vaccinated_date}}</b></p>
+                        <p>Dose: <b>{{vaccine.dose}}</b></p>
+
+                    {% else %}
+                    No vaccinations recorded for this resident yet.
+
+                    {% endif %}
                 </div>
             </div>
 
@@ -55,14 +80,15 @@
                     
                     {% if medical|length > 0 %}
                     
-                        {% for i in medical %}
-                            <p>Illness: <b>{{i.allergies}}</b></p>
-                            <p>Date of Diagnose:</p>
-                            <p>Medicine:</p>
-                            <p>Dose:</p>
-                            <p>Frequency:</p>
+                        <!-- {% for i in medical %}
+                            <p>Illness: <b>{{i.illness}}</b></p>
+                            <p>Date of Diagnose: <b>{{i.diagnosed_date}}</b></p>
+                            <p>Medicine: <b>{{i.medicine}}</b></p>
+                            <p>Dose: <b>{{i.dosage}}</b></p>
+                            <p>Frequency: <b>{{i.frequency}}</b></p>
                             <br><hr class="divider"><br>
-                        {% endfor %}
+                        {% endfor %} -->
+                        There are many histories.
 
                     {% elif medical|length == 0 %}
                         <h4>1 history</h4>

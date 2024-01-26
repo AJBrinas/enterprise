@@ -34,22 +34,25 @@ def verify(user_credentials: OAuth2PasswordRequestForm = Depends(),
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@router.post('/auth', status_code=status.HTTP_100_CONTINUE)
-def login(db: Session = Depends(get_db), username: str = Form(...), password: str = Form(...)):
+@router.post('/login/auth', status_code=status.HTTP_100_CONTINUE)
+def login(db: Session = Depends(get_db), user_credentials: OAuth2PasswordRequestForm = Depends()
+          , username: str = Form(...), password: str = Form(...)):
+    user_credentials.username = username
+    user_credentials.password = password
     user = db.query(u.User).filter(
-        u.User.email == username).first()
+        u.User.email == user_credentials.username).first()
 
     if not user:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail="Invalid Credentials")
 
     # Checking the password using hashed passwords method
-    if not utils.verify(password, user.password):
+    if not utils.verify(user_credentials.password, user.password):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail="Invalid Credentials!")
 
     access_token = oauth2.create_access_token(data={"user_id": user.id})
-    for_url = f"/health-information/infos"
+    for_url = "/health-information/infos"
     response = RedirectResponse(url=for_url)
     return response
 

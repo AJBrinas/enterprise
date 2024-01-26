@@ -128,11 +128,13 @@ async def gender_all(db: db_dependency):
 def view_form(request: Request, db: db_dependency, id: int):
     person = db.query(hi).filter(hi.id == id).first()
     contact = db.query(ec).filter(ec.person_info == id).all()
-    medical = db.query(mh).filter(mh.person_info == id).all()
+    medical = db.query(m).filter(m.person_info == id).all()
+    vaccine = db.query(vr).filter(vr.person_info == id).all()
     return temp.TemplateResponse("view_health_info.html", {'request': request,
                                                            'person': person,
                                                            'contact': contact,
-                                                           'medical': medical})
+                                                           'medical': medical,
+                                                           'vaccine': vaccine})
 
 # Get Person info
 @router.get('/views/{id}', status_code=200)

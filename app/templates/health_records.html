@@ -358,27 +358,60 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Dummy data for the donut chart
-        var donutChartData = {
-            labels: ['Male', 'Female'],
+        // Dummy data for the donut chart   
+        var donutChartData;
+
+    function fetchData() {
+        fetch('/health-information/gender-all')  // Replace with the actual endpoint URL
+            .then(response => response.json())
+            .then(data => {
+                updateDonutChart(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
+
+    function updateDonutChart(data) {
+        var labels = data.map(item => item.gender);
+        var counts = data.map(item => item.total);
+
+        // Update the global variable
+        donutChartData = {
+            labels: labels,
             datasets: [{
-                data: [554, 653], // Example data
+                data: counts,
                 backgroundColor: ['Blue', 'Red'],
             }]
         };
 
-        // Create the donut chart
+        // Create or update the donut chart
         var ctxDonut = document.getElementById('donutChart').getContext('2d');
-        var donutChart = new Chart(ctxDonut, {
-            type: 'doughnut',
-            data: donutChartData,
-            options: {
-                cutout: '50%', // Adjust this value to control the size of the hole in the center
-                responsive: true,
-                maintainAspectRatio: false,
-            }
-        });
-    });
+        if (donutChart) {
+            // If the chart already exists, update its data
+            donutChart.data = donutChartData;
+            donutChart.update();
+        } else {
+            // If the chart doesn't exist, create a new one
+            donutChart = new Chart(ctxDonut, {
+                type: 'doughnut',
+                data: donutChartData,
+                options: {
+                    cutout: '50%',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+        }
+    }
+
+    // Call the fetchData function when the page loads
+    fetchData();
+
+    // Set up an interval to fetch data periodically
+    setInterval(fetchData, 20000); // Fetch data every 5 seconds
+});
+
     document.addEventListener('DOMContentLoaded', function () {
         // Dummy data for the line chart
         var lineChartData = {
@@ -437,7 +470,6 @@
     });
     
 });
-
 
 //       $('#modalButton').click(function () {
 
