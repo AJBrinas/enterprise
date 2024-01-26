@@ -52,18 +52,19 @@ def login(db: Session = Depends(get_db), user_credentials: OAuth2PasswordRequest
                             detail="Invalid Credentials!")
 
     access_token = oauth2.create_access_token(data={"user_id": user.id})
-    for_url = "/health-information/infos"
+    for_url = f"/health-information/infos?access_token={access_token}&bearer_token=bearer"
     response = RedirectResponse(url=for_url)
     return response
 
 
-@router.get("/login")
+@router.get("/")
 def log(request: Request):
     return temp.TemplateResponse('login.html', {'request': request})
 
 
-@router.post("/login/au")
+@router.get("/login/au")
 def logs(request: Request, username: str = Form(), password: str = Form()):
     user = username
     passw = password
-    return temp.TemplateResponse('health_records.html', {'request': request, 'user': user, 'pass': passw})
+    return temp.TemplateResponse('health_records.html', {'request': request, 'user': user, 'pass': passw},
+                                 status_code=201)

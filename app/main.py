@@ -15,9 +15,16 @@ temp = Jinja2Templates(directory="app/templates")
 app.mount("/app/static", StaticFiles(directory='app/static/'), name="static")
 
 
-@app.get("/")
+@app.get("/tac")
 def root(Request: Request):
     return temp.TemplateResponse("landing.html",
+                                 {"request": Request}
+                                 )
+
+
+@app.get("/service")
+def services(Request: Request):
+    return temp.TemplateResponse("enterprise_services.html",
                                  {"request": Request}
                                  )
 
