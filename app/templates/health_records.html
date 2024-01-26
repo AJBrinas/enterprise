@@ -26,6 +26,7 @@
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 </head>
 
+
 <body>
 <div class="main-content">
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
@@ -104,8 +105,8 @@
         </div>
     </div>
 </div>
-
 <div><p></p></div>
+
 <div class="container-fluid">
     <!-- start page title -->
     <div class="row">
@@ -438,6 +439,7 @@
 
 
 //       $('#modalButton').click(function () {
+
       
 //          // getting the value of the input fields
 //          var product = $('#product').val();
@@ -449,9 +451,37 @@
 //          '<p> Price: ' + price + '</p>' +
 //          '<p> Total: ' + total + '</p>';
          
+
 //          // adding the data to the modal
 //          $('.modal-body').html(htmlStr);
 //       });
 //    </script>
 </body>
 {% endblock content %}
+
+<!--          // adding the data to the modal
+         $('.modal-body').html(htmlStr);
+      });
+   </script>  -->
+
+   <!-- <script>
+    $(document).ready(function () {
+        // Make an Ajax request to the server
+        var $data = $('#index-result')
+        $.ajax({
+            url: 'https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/users/',
+            type: 'GET',
+            dataType: 'json',  // Specify that you expect JSON data
+            success: function (data) {
+                $.each(data, function(i, user){
+                    $data.append('<li>'+ data.message +'</li>');
+                    $data.append('<li>'+ data.data +'</li>');
+                });
+                
+            },
+            error: function (error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+</script> -->

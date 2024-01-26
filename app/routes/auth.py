@@ -1,16 +1,21 @@
-from fastapi import APIRouter, Depends
-from fastapi import status, HTTPException
+from fastapi import APIRouter, Depends, Form
+from fastapi import status, HTTPException, Request
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from app.config.database import get_db
 from app.auth import utils, oauth2
 from app.models import users as u
+from app.schemas import user_schema as us
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import RedirectResponse
 
 router = APIRouter(tags=['Authentication'])
 
+temp = Jinja2Templates(directory="app/templates")
 
-@router.post('/login')
-def login(user_credentials: OAuth2PasswordRequestForm = Depends(),
+
+@router.post('/verify', status_code=status.HTTP_202_ACCEPTED)
+def verify(user_credentials: OAuth2PasswordRequestForm = Depends(),
           db: Session = Depends(get_db)):
 
     user = db.query(u.User).filter(
@@ -27,3 +32,28 @@ def login(user_credentials: OAuth2PasswordRequestForm = Depends(),
 
     access_token = oauth2.create_access_token(data={"user_id": user.id})
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+@router.post('/auth', status_code=status.HTTP_100_CONTINUE)
+def login(db: Session = Depends(get_db), username: str = Form(...), password: str = Form(...)):
+    user = db.query(u.User).filter(
+        u.User.email == username).first()
+
+    if not user:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
+                            detail="Invalid Credentials")
+
+    # Checking the password using hashed passwords method
+    if not utils.verify(password, user.password):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
+                            detail="Invalid Credentials!")
+
+    access_token = oauth2.create_access_token(data={"user_id": user.id})
+    for_url = f"/health-information/infos"
+    response = RedirectResponse(url=for_url)
+    return response
+
+
+@router.get("/login")
+def log(request: Request):
+    return temp.TemplateResponse('login.html', {'request': request})
