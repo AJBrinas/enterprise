@@ -24,7 +24,7 @@ db_dependency = Annotated[Session, Depends(get_db)]
 def create_user(user: us.Create,
                 db: db_dependency):
     # Check if username already exists 6
-  
+
     hsh = utils.hash(user.password)
     user.password = hsh
 

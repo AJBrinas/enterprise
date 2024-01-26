@@ -119,9 +119,9 @@
     <!-- end page title -->
 
 
-     <div class="card-body" style="height: 600px; overflow: auto;">
+     <div class="card-body" style="height: 750px; overflow: auto;">
         <div class="table-responsive">
-                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%;">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 10px;">
@@ -152,8 +152,8 @@
                             <td>{{i.address}}</td>
                             <td>
                                 
-                                <button class="btn btn-soft-success" type="button" data-bs-toggle="modal" data-bs-target="#viewModal">
-                                    <a href="#" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
+                                <button class="btn btn-soft-success" type="button" data-bs-toggle="modal">
+                                    <a href="view/{{i.id}}" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a>
 
                                 </button>
                                 <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="{{i.id}}">
@@ -176,16 +176,16 @@
 <!-- container-fluid -->
 
 <!-- View Modal -->
-<div class="modal fade" id="viewModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="viewModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="viewModalLabel">Resident Health Information</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"> -->
                 <!-- Personal Details Column -->
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-6 border-end">
                         <p><strong>PERSONAL DETAILS</strong></p>
                         <p><strong>Name:</strong></p>
@@ -231,7 +231,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <!-- <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">

@@ -1,16 +1,11 @@
 {% extends 'index.html' %}
 
+{% block title %}
+    Resident Health Information
+{% endblock title %}
+    
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Information</title>
-    <!-- Bootstrap 5 CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-</head>
-<body>
+
 <br><br>
 <div class="container mt-5">
     <h3 class="mb-4">Resident Health Information</h3>
@@ -19,18 +14,21 @@
         <div class="col-md-6">
             <div class="card mb-4" style="height: 97%;" >
                 <div class="card-header">
-                    Personal Information
+                    <h3><b>Personal Information</b></h3>
                 </div>
                 <div class="card-body">
                     <div class="logo-container d-flex justify-content-center">
                         <img alt="User Photo" src="{{ url_for('static', path='img/OIP.jpg')}}" class ="logo" >
                     </div>
-                    <p>Name:</p>
-                    <p>Date of Birth:</p>
-                    <p>Gender</p>
+                                        
+                    <p>Name: <b>{{person.full_name}}</b></p>
+                    <p>Date of Birth: <b>{{person.date_of_birth}}</b></p>
+                    <p>Gender: <b>{{person.gender}}</b></p>
                     <p>Age:</p>
-                    <p>Address:</p>
+                    <p>Address: <b>{{person.address}}</b></p>
                     <p>Contact Number:</p>
+                        
+                        
                 </div>
             </div>
         </div>
@@ -54,11 +52,24 @@
                     Medical History
                 </div>
                 <div class="card-body">
-                    <p>Illness:</p>
-                    <p>Date of Diagnose:</p>
-                    <p>Medicine:</p>
-                    <p>Dose:</p>
-                    <p>Frequency:</p>
+                    
+                    {% if medical|length > 0 %}
+                    
+                        {% for i in medical %}
+                            <p>Illness: <b>{{i.allergies}}</b></p>
+                            <p>Date of Diagnose:</p>
+                            <p>Medicine:</p>
+                            <p>Dose:</p>
+                            <p>Frequency:</p>
+                            <br><hr class="divider"><br>
+                        {% endfor %}
+
+                    {% elif medical|length == 0 %}
+                        <h4>1 history</h4>
+                    {% else %}
+                        <h4>No Medical History.</h4>
+                    {% endif %}
+                        
                 </div>
             </div>
 
@@ -67,20 +78,27 @@
                 <div class="card-header">
                     Emergency Contacts
                 </div>
-                <div class="card-body">
-                    <p>Contact Name:</p>
-                    <p>Relationship</p>
-                    <p>Contact Number:</p>
-                </div>
+                
+                {% if contact|length > 0 %}
+                    
+                    {% for c in contact %}
+                        <div class="card-body">
+                        <p>Contact Name: <b>{{c.contact_name}}</b></p>
+                        <p>Relationship: <b>{{c.relationship}}</b></p>
+                        <p>Contact Number: <b>{{c.contact_number}}</b></p>
+                        </div>
+                    {% endfor %}
+
+                {% else %}
+                    <div class="card-body">
+                    <p>Contact Name: <b>{{contact.contact_name}}</b></p>
+                    <p>Relationship: <b>{{contact.relationship}}</b></p>
+                    <p>Contact Number: <b>{{contact.contact_number}}</b></p>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
-
-<!-- Bootstrap 5 JS (optional) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
 
 {% endblock %}
