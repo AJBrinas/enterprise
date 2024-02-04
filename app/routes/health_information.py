@@ -33,7 +33,7 @@ async def read_item(id: int, db: db_dependency,
 
 
 # Get all HEALTH INFORMATION without HTML
-@router.get("/all", response_model=List[schema.HealthTable])
+@router.get("/all")
 def read_items(db: db_dependency, limit: int = 10):
     health = db.query(hi).limit(limit).all()
 
@@ -43,6 +43,7 @@ def read_items(db: db_dependency, limit: int = 10):
             detail="No informations yet."
             )
 
+    print(len(health))
     return {"health-data": health}
 
 
@@ -111,6 +112,7 @@ def read_all_health(db: db_dependency, id: int):
             "contact": contact}
 
 
+# Getting Gender
 @router.get("/gender-all")
 async def gender_all(db: db_dependency):
     genders = db.query(hi.gender,
@@ -120,14 +122,32 @@ async def gender_all(db: db_dependency):
     return result
 
 
-@router.get('/add')
-def add_form(request: Request):
-    return temp.TemplateResponse("try.html", {'request': request})
+# Health View -------------------
+# Goto HTML
+@router.get('/view/{id}', status_code=200)
+def view_form(request: Request, db: db_dependency, id: int):
+    person = db.query(hi).filter(hi.id == id).first()
+    contact = db.query(ec).filter(ec.person_info == id).all()
+    medical = db.query(m).filter(m.person_info == id).all()
+    vaccine = db.query(vr).filter(vr.person_info == id).all()
+    return temp.TemplateResponse("view_health_info.html", {'request': request,
+                                                           'person': person,
+                                                           'contact': contact,
+                                                           'medical': medical,
+                                                           'vaccine': vaccine})
+
+# Get Person info
+@router.get('/views/{id}', status_code=200)
+def add_form(id: int, db: db_dependency):
+    person = db.query(hi).filter(hi.id == id).first()
+    
+    return {'person': person}
+# ------------------------
 
 
-# From the Html FORM
+# From the Html FORM CRUDDDDDD
 @router.post("/create", status_code=201)
-def create_information(db: db_dependency, id: int,
+def create_information(db: db_dependency,
                        illness: str = Form(...),
                        medicine: str = Form(...),
                        dosage: str = Form(...),
@@ -135,25 +155,39 @@ def create_information(db: db_dependency, id: int,
                        diagnosed: date = Form(...),
                        person_info: str = Form(...)):
     # TODO: Implement the function to save information into database
-    new = m(
-        illness=illness,
-        medicine=medicine,
-        dosage=dosage,
-        frequency=frequency,
-        diagnosed=diagnosed,
-        person_info=person_info
-    )
-    db.add(new)
-    db.commit()
-    db.refresh(new)
-    return new
+    try:
+        new = m(
+            illness=illness,
+            medicine=medicine,
+            dosage=dosage,
+            frequency=frequency,
+            diagnosed_date=diagnosed,
+            person_info=person_info
+        )   
+        db.add(new)
+        db.commit()
+        db.refresh(new)
+        return new
+    except Exception as e:
+        print(e)
 
 
 @router.post("/update")
-def put_information(name: str = Form(), id: str = Form()):
+def put_information(illness: str = Form(...),
+                    medicine: str = Form(...),
+                    dosage: str = Form(...),
+                    frequency: str = Form(...),
+                    diagnosed: date = Form(...),
+                    person_info: str = Form(...)):
     # TODO: Implement the function to save information into database
 
-    return {'name': name, 'id': id}
+    return {'medicine': medicine,
+            'dosages': dosage,
+            'illness': illness,
+            'diagnosed': diagnosed,
+            'frequency': frequency,
+            'person_info': person_info}
+
 
 @router.put("/delete")
 def delete_information(db: db_dependency, id: int):
