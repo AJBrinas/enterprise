@@ -310,95 +310,124 @@
 </div>
 
 
-    <script>
+<script>
+    // Use the modern fetch API
+    fetch('http://127.0.0.1:8000/health-information/all')
+        .then(response => response.json())
+        .then(data => {
+            // Use the response data
+            displayData(data.healthdata);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+        
+    function displayData(healthdata) {
+        // Create HTML for the table
+        var resultHtml = '';
+
+        healthdata.forEach((resident, index) => { // Change variable name to 'resident'
+            resultHtml += '<tr>';
+            resultHtml += '<th scope="row"> <div class="form-check"><input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1"></div></th>';
+            resultHtml += '<td>' + (index + 1)+ '</td>';
+            resultHtml += '<td>' + resident.full_name + '</td>'; // Use 'resident' instead of 'healthdata'
+            resultHtml += '<td>' + resident.gender + '</td>';
+            resultHtml += '<td>' + resident.address + '</td>';
+            resultHtml += '<td><button class="btn btn-soft-success" type="button" data-bs-toggle="modal"><a href="view/'+ (index + 1) +'?id='+ resident.id +'&num='+ (index + 1) +'" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a> </button> <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="'+ (index + 1) +'"><a class="dropdown-item" id="healthDelete"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></button></td>';
+            resultHtml += '</tr>';
+        });
+
+        // Display the HTML in the table body
+        document.getElementById('resultBody').innerHTML = resultHtml;
+    }
+</script>
+
+
+
+<script>
+    // PIE GRAPH
+    document.addEventListener('DOMContentLoaded', function () {
+
         // Use the modern fetch API
-        fetch('https://bitbo-standard-dep-dd2462e5a0a8.herokuapp.com/residentprofiles/get')
+        fetch('http://127.0.0.1:8000/health-information/gender-all')
             .then(response => response.json())
             .then(data => {
                 // Use the response data
-                displayData(data.data);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
+                displayData(data.gender);
+        
+            // Dummy data for the donut chart
+            var donutChartData = {
+                labels: data.gender.map(item => item.gender),
+                datasets: [{
+                    data: data.gender.map(item => item.total), // Example data
+                    backgroundColor: ['Blue', 'Red'],
+                }]
+            };
+
+            // Create the donut chart
+            var ctxDonut = document.getElementById('donutChart').getContext('2d');
+            var donutChart = new Chart(ctxDonut, {
+                type: 'doughnut',
+                data: donutChartData,
+                options: {
+                    cutout: '50%', // Adjust this value to control the size of the hole in the center
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
             });
-            
-        function displayData(residents) {
-            // Create HTML for the table
-            var resultHtml = '';
-
-            residents.forEach((resident, index) => {
-                resultHtml += '<tr>';
-                resultHtml += '<th scope="row"> <div class="form-check"><input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1"></div></th>';
-                resultHtml += '<td>' + (index + 1)+ '</td>';
-                resultHtml += '<td>' + resident.first_name + '</td>';
-                resultHtml += '<td>' + resident.age + '</td>';
-                resultHtml += '<td>' + resident.birthplace + '</td>';
-                resultHtml += '<td><button class="btn btn-soft-success" type="button" data-bs-toggle="modal"><a href="view/'+ (index + 1) +'?id='+ resident.id +'&num='+ (index + 1) +'" class="dropdown-item" id="modalButton"> <i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a> </button> <button class="btn btn-soft-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="'+ (index + 1) +'"><a class="dropdown-item" id="healthDelete"> <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</a></button></td>';
-                resultHtml += '</tr>';
-            });
-
-            // Display the HTML in the table body
-            document.getElementById('resultBody').innerHTML = resultHtml;
-        }
-    </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Dummy data for the donut chart
-        var donutChartData = {
-            labels: ['Male', 'Female'],
-            datasets: [{
-                data: [554, 653], // Example data
-                backgroundColor: ['Blue', 'Red'],
-            }]
-        };
-
-        // Create the donut chart
-        var ctxDonut = document.getElementById('donutChart').getContext('2d');
-        var donutChart = new Chart(ctxDonut, {
-            type: 'doughnut',
-            data: donutChartData,
-            options: {
-                cutout: '50%', // Adjust this value to control the size of the hole in the center
-                responsive: true,
-                maintainAspectRatio: false,
-            }
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
         });
     });
 
+    // LINE CHART
     document.addEventListener('DOMContentLoaded', function () {
-        // Dummy data for the line chart
-        var lineChartData = {
-            labels: ['Pneumonia', 'Asthma', 'Diabetes', 'Hypertension', 'HIV/AIDS'],
-            datasets: [{
-                label: 'Summary of Illnesses',
-                borderColor: 'rgb(75, 192, 192)',
-                data: [12, 19, 3, 5, 2], // Example data
-                fill: false,
-            }]
-        };
 
-        // Create the line chart
-        var ctxLine = document.getElementById('lineChart').getContext('2d');
-        var lineChart = new Chart(ctxLine, {
-            type: 'line',
-            data: lineChartData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        type: 'category',
-                        labels: lineChartData.labels,
-                    },
-                    y: {
-                        beginAtZero: true,
+        // Use the modern fetch API
+        fetch('http://127.0.0.1:8000/health-information/graphs/illnesses')
+            .then(response => response.json())
+            .then(data => {
+                // Use the response data
+                displayData(data.ill);
+
+                // Data for the line chart
+                var lineChartData = {
+                labels: data.ill.map(item => item.illness),
+                datasets: [{
+                    label: 'Number of Illnesses',
+                    borderColor: 'rgb(75, 192, 192)',
+                    data: data.ill.map(item => item.total), // Example data
+                    fill: false,
+                }]
+                };
+        
+                // Create the line chart
+                var ctxLine = document.getElementById('lineChart').getContext('2d');
+                var lineChart = new Chart(ctxLine, {
+                type: 'line',
+                data: lineChartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'category',
+                            labels: lineChartData.labels,
+                        },
+                        y: {
+                            beginAtZero: true,
+                        },
                     },
                 },
-            },
+                });
+            })
+        .catch(error => {
+            console.error('Error fetching data:', error);
         });
     });
 
+    // DATA TABLE FOR INFOS
     $(document).ready(function() {
     $('#example').DataTable({
         responsive: true,
@@ -425,54 +454,67 @@
     
 });
 
-//       $('#modalButton').click(function () {
-
-      
-//          // getting the value of the input fields
-//          var product = $('#product').val();
-//          var quantity = $('#quantity').val();
-//          var price = $('#price').val();
-//          var total = $('#total').val();
-//          var htmlStr = '<p> Product: ' + product + '</p>' +
-//          '<p> Quantity: ' + quantity + '</p>' +
-//          '<p> Price: ' + price + '</p>' +
-//          '<p> Total: ' + total + '</p>';
-         
 
 
-//          // adding the data to the modal
-//          $('.modal-body').html(htmlStr);
-//       });
-//    </script>
-</body>
+</script>
 
-<!--          // adding the data to the modal
-         $('.modal-body').html(htmlStr);
-
-         // adding the data to the modal
-         $('#view-health-info').html(htmlStr);
-
-      });
-   </script>  -->
 <!-- 
-   <script>
-    $(document).ready(function () {
-        // Make an Ajax request to the server
-        var $data = $('#index-result')
-        $.ajax({
-            url: '/health-information/info/vac/3',
-            type: 'GET',
-            dataType: 'json',  // Specify that you expect JSON data
-            success: function (data) {
-                $.each(data, function(i, user){
-                    $data.append('<li>'+ data.full_name +'</li>');
-                    $data.append('<li>'+ data.vaccines +'</li>');
-                });
+    document.addEventListener('DOMContentLoaded', function () {
+
+    // Function to fetch data and update the line chart
+    function updateLineChart() {
+        fetch('http://127.0.0.1:8000/health-information/graphs/illnesses')
+            .then(response => response.json())
+            .then(data => {
+                // Use the response data
+                displayData(data.ill);
+
+                // Update the line chart with new data
+                lineChart.data.labels = data.ill.map(item => item.illness);
+                lineChart.data.datasets[0].data = data.ill.map(item => item.total);
+                lineChart.update();
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
+
+    // Initial line chart creation
+    var ctxLine = document.getElementById('lineChart').getContext('2d');
+    var lineChart = new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Number of Illnesses',
+                borderColor: 'rgb(75, 192, 192)',
+                data: [],
+                fill: false,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'category',
+                    labels: [],
+                },
+                y: {
+                    beginAtZero: true,
+                },
             },
-            error: function (error) {
-                console.error('Error:', error);
-            }
-        });
-    }); -->
-<!-- </script> -->
+        },
+    });
+
+    // Self-invoking function to fetch and update data every 5 seconds
+    (function autoUpdate() {
+        updateLineChart();
+        setTimeout(autoUpdate, 5000); // Adjust the interval as needed
+    })();
+});
+
+ -->
+
+
 {% endblock content %}

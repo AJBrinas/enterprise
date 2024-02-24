@@ -17,7 +17,7 @@
 
 </div>
     <div class="center">
-  <form action="tac/" method="get">
+  <form action="/login/au" method="get">
     <div class="logo-container">
         <img alt="bitbo logo" src="{{ url_for('static', path='img/bitbo_logo.png')}}" class ="logo" >
     </div>
@@ -33,21 +33,44 @@
     </div>
     <div class="pass">
     <!-- <button type="submit">Sign In</button> -->
-    <button type="submit" class="btn btn-primary">Sign In</button>
-<input type="hidden" id="services-url">
-</div>
-<!-- <script src="{{ url_for('static', path='js/signin.js')}}" defer></script>
+    <button type="submit" id="loginForm" class="btn btn-primary">Sign In</button>
+  <input type="hidden" id="services-url">
+</form>
 
-    <div class="forgotpassword">Forgot Password? Click <a href="/agreement" onclick="agreement()">here</a> to reset
-        <script>
-          async function agreement() {
-          const response = await fetch('/agreement');
-          const result = await response.text();
-          window.location.href = '/agreement';
-          }
-        </script>
-  </div> -->
-  </div>
-    
-    </form>
+<!-- <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Capture the credentials from the form
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Send a request to the server to authenticate and obtain the token
+        fetch('http://127.0.0.1:8000/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to authenticate');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Store the JWT token securely (e.g., in local storage or session storage)
+            localStorage.setItem('token', data.access_token);
+
+            // Redirect the user to the desired route
+            window.location.href = 'http://your-fastapi-django-app.com/locked-route';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script> -->
+
+
 </html>

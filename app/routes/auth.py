@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Form, Cookie, Header
+from fastapi import APIRouter, Depends, Form, Cookie, Header, Request
 from fastapi import status, HTTPException, Request
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
@@ -17,7 +17,7 @@ temp = Jinja2Templates(directory="app/templates")
 
 @router.post('/verify', status_code=status.HTTP_202_ACCEPTED)
 def verify(user_credentials: OAuth2PasswordRequestForm = Depends(),
-          db: Session = Depends(get_db)):
+           db: Session = Depends(get_db)):
     print(user_credentials)
     user = db.query(u.User).filter(
         u.User.email == user_credentials.username).first()
@@ -36,13 +36,12 @@ def verify(user_credentials: OAuth2PasswordRequestForm = Depends(),
 
 
 @router.post('/login/auth', status_code=status.HTTP_100_CONTINUE)
-def login(request: Request, db: Session = Depends(get_db), user_credentials: OAuth2PasswordRequestForm = Depends()
-          , username: str = Form(...), password: str = Form(...)):
+def login(request: Request, db: Session = Depends(get_db),
+          user_credentials: OAuth2PasswordRequestForm = Depends(), username: str = Form(...), password: str = Form(...)):
     user_credentials.username = username
     user_credentials.password = password
     user = db.query(u.User).filter(
         u.User.email == user_credentials.username).first()
-
     if not user:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail="Invalid Credentials")
@@ -53,9 +52,13 @@ def login(request: Request, db: Session = Depends(get_db), user_credentials: OAu
                             detail="Invalid Credentials!")
 
     access_token = oauth2.create_access_token(data={"user_id": user.id})
-    return temp.TemplateResponse('health_record.html',
-                                 {'request': request,
-                                  "access_token": access_token, "token_type": "bearer"})
+    print(access_token)
+    red = f"http://127.0.0.1:8000/health-information/infos?at={access_token}&token_type=bearer"
+    return RedirectResponse(url=red)
+    # return temp.TemplateResponse('health_records.html',
+    #                              {'request': request,
+    #                               'access_token': access_token,
+    #                               'token_type': 'bearer'})
 
 
 @router.get("/")
@@ -64,8 +67,5 @@ def log(request: Request):
 
 
 @router.get("/login/au")
-def logs(request: Request, username: str = Form(), password: str = Form()):
-    user = username
-    passw = password
-    return temp.TemplateResponse('health_records.html', {'request': request, 'user': user, 'pass': passw},
-                                 status_code=201)
+def logs(request: Request, username: str = Form(...), password: str = Form(...)):
+    return RedirectResponse(url='/health-information/infos')

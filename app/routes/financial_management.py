@@ -14,3 +14,10 @@ temp = Jinja2Templates(directory="app/templates")
 def root(request: Request):
     return temp.TemplateResponse("financial_management.html",
                                  {"request": request})
+temp = Jinja2Templates(directory="app/templates")
+
+
+@router.get("/")
+def root(request: Request):
+    return temp.TemplateResponse("financial_management.html",
+                                 {"request": request})

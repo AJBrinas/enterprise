@@ -28,10 +28,15 @@ class MedicalHistory(Base):
     __tablename__ = 'medical_history'
 
     id = Column(Integer, primary_key=True, index=True)
-    allergies = Column(JSON)
-    chronic_conditions = Column(JSON)
-    surgeries = Column(JSON)
-    family_history = Column(JSON)
+    allergy = Column(String)
+    allergy_type = Column(String)
+    allergy_severity = Column(String)
+    chronic_condition = Column(String)
+    chronic_diagnosis = Column(DATE)
+    surgery = Column(String)
+    surgery_date = Column(DATE)
+    family_history_condition = Column(String)
+    family_history_relation = Column(String)
     person_info = Column(Integer, ForeignKey('health_information.id',
                                              ondelete='CASCADE'))
 
