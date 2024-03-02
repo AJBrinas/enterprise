@@ -34,14 +34,18 @@ class CreateMedicalHistory(BaseModel):
 
 class VaccinationRecord(BaseModel):
     vaccine: str
-    date: date
+    vaccinated_date: date
     dose: str
+    person_info: int
 
 
 class Medication(BaseModel):
-    medicibne: str
+    illness: str
+    medicine: str
     dosage: str
     frequency: str
+    diagnosed_date: date
+    person_info: int
 
 
 class HealthInformation(BaseModel):

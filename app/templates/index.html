@@ -21,15 +21,15 @@
     <link href="{{ url_for('static', path='/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ url_for('static', path='css/main.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ url_for('static', path='css/landing.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ url_for('static', path='css/alert.css')}}" rel="stylesheet" type="text/css" />
     
     
     <!-- datatables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.4.0/css/fixedHeader.dataTables.min.css">
-    `
 
-
+    <!-- Toast Alerts -->
 </head>
 
 <body>
@@ -37,11 +37,21 @@
     <!-- Begin page -->
     <div class="card">
     <div id="layout-wrapper">
+        
       <!-- header -->
         {% include 'navbar.html' %}
+
         {% block content%}
         
         {% endblock content %}
+    <!-- <ul class="notifications"></ul>
+    <div class="buttons">
+        <button class="btn" id="success">Success</button>
+        <button class="btn" id="error">Error</button>
+        <button class="btn" id="warning">Warning</button>
+        <button class="btn" id="info">Info</button>
+    </div> -->
+
     </div>
     </div>
     <!-- footer -->
@@ -53,12 +63,13 @@
 
 
     </div>
-    
+
     <!-- JAVASCRIPT -->
     <script src="{{ url_for('static', path='libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ url_for('static', path='libs/feather-icons/feather.min.js')}}"></script>
     <script src="{{ url_for('static', path='js/pages/plugins/lord-icon-2.1.0.js')}}"></script>
-    
+    <script src="{{ url_for('static', path='js/alerts.js')}}" defer></script>
+
     <!-- Dashboard init -->    
     <!-- App js -->
     <script src="{{ url_for('static', path='js/app.js')}}"></script>

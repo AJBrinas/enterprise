@@ -51,6 +51,12 @@ class MedicalHistory(Base):
     updated_by = Column(String, nullable=True, index=True)
 
 
+# For List of VACCINES
+class Vaccines(Base):
+    __tablename__ = "vaccines"
+
+    vaccine_name = Column(String, primary_key=True)
+
 class VaccinationRecord(Base):
     __tablename__ = 'vaccination_records'
 

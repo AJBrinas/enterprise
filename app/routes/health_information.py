@@ -3,7 +3,7 @@ from fastapi import HTTPException, status, Depends
 from fastapi.responses import RedirectResponse, ORJSONResponse
 from fastapi.templating import Jinja2Templates
 from app.config.database import db_dependency
-from app.models.s_health import EmergencyContact as ec, MedicalHistory as mh, VaccinationRecord as vr, Medication as m, HealthInformation as hi
+from app.models.s_health import EmergencyContact as ec, MedicalHistory as mh, VaccinationRecord as vr, Medication as m, HealthInformation as hi, Vaccines as v
 from app.schemas import s_health as schema
 from typing import List
 from fastapi.encoders import jsonable_encoder
@@ -147,9 +147,35 @@ def view_form(request: Request, db: db_dependency, id: int):
 @router.get('/views/{id}', status_code=200)
 def add_form(id: int, db: db_dependency):
     person = db.query(hi).filter(hi.id == id).first()
-
     return {'person': person}
 # ------------------------
+
+
+# From the Html FORM CRUD for VACCINATION -----------------------
+# Getting the list of the Vaccine Names
+@router.get("/vac-name")
+async def vaccine_names(db: db_dependency):
+    vac_name = db.query(v).all()
+    return {'vac_name': vac_name}
+
+
+# Create Vaccination
+@router.post("/add-vaccination", response_model=schema.VaccinationRecord)
+async def create_vaccination_record(vaccination_record: schema.VaccinationRecord, db: db_dependency):
+    add_vaccination = vr(**vaccination_record.dict())
+    db.add(add_vaccination)
+    db.commit()
+    db.refresh(add_vaccination)
+    return add_vaccination
+
+
+# Delete Vaccination
+@router.get("/del-vaccination/{vacci}/{id}")
+async def delete_vaccination(vacci: int, id: int, db: db_dependency):
+    vaccinations = db.query(vr).filter(vr.id == vacci)
+    vaccinations.delete(synchronize_session='fetch')
+    db.commit()
+    return RedirectResponse(url=f"http://127.0.0.1:8000/health-information/view/{id}?id=undefined&num={id}")
 
 
 # From the Html FORM CRUD for MEDICATION -----------------------
@@ -160,30 +186,13 @@ def try_form(request: Request):
 
 
 # Create Medication
-@router.post("/create", status_code=201)
-def create_information(db: db_dependency,
-                       illness: str = Form(...),
-                       medicine: str = Form(...),
-                       dosage: str = Form(...),
-                       frequency: str = Form(...),
-                       diagnosed: date = Form(...),
-                       person_info: str = Form(...)):
-    # TODO: Implement the function to save information into database
-    try:
-        new = m(
-            illness=illness,
-            medicine=medicine,
-            dosage=dosage,
-            frequency=frequency,
-            diagnosed_date=diagnosed,
-            person_info=person_info
-        )   
-        db.add(new)
-        db.commit()
-        db.refresh(new)
-        return new
-    except Exception as e:
-        print(e)
+@router.post("/add-medication", status_code=201, response_model=schema.Medication)
+def create_information(db: db_dependency, medication_record: schema.Medication):
+    medication = m(**medication_record.dict())
+    db.add(medication)
+    db.commit()
+    db.refresh(medication)
+    return medication
 
 
 # Update Medication
@@ -205,10 +214,12 @@ def put_information(illness: str = Form(...),
 
 
 # Delete Medication
-@router.put("/delete")
-def delete_information(db: db_dependency, id: int):
-    # TODO: Implement the function to save information into database
-    pass
+@router.get("/del-medication/{id}/{person_id}")
+def delete_information(db: db_dependency, id: int, person_id: int):
+    vaccinations = db.query(m).filter(m.id == id)
+    vaccinations.delete(synchronize_session='fetch')
+    db.commit()
+    return RedirectResponse(url=f"http://127.0.0.1:8000/health-information/view/{person_id}?id=undefined&num={person_id}")
 
 
 # VIEWING and GETTING DATA ----------------------
